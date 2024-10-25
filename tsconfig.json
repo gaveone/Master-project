@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "./JS",
+    "rootDir": "./TS",
+    "strict": true,
+    "module": "commonjs",
+    "target": "ES2023"
+  },
+  "include": ["TS/**/*"],
+  "exclude":["node_modules"]
+}
