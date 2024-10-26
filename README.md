@@ -40,6 +40,10 @@ To switch to a specific branch in the repository, follow these steps:
    git clone https://github.com/gaveone/Master-project.git
    ```
 
+   ```bash
+   gh repo clone gaveone/Master-project
+   ```
+
 2. **Navigate to the Project Directory**:
 
    ```bash
