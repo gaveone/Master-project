@@ -1,7 +1,67 @@
+:root {
+  --text: rgb(237, 235, 232);
+  --background: rgb(20, 18, 16);
+  --primary: rgb(192, 184, 175);
+  --primary-60: rgba(192, 184, 175, 0.6);
+
+  --secondary: rgb(77, 91, 72);
+  --secondary-60: rgba(77, 91, 72, 0.6);
+  --accent: rgb(121, 150, 123);
+
+  /* card  Colours  Would be an array in JavaScript*/
+}
+
+
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-scroll-behavior: smooth;
--webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body{
+     font-family: "Lato", sans-serif;
+     height: 100vh;
+     background-color: var(--background);
+}
+
+.Container{
+     display: grid;
+     height: 100%;
+     grid-template-rows: 100px 1fr 150px ;
+     grid-template-areas: "mainHeader" "mainContent" "manFooter";
+
+}
+
+.Container .mainHeader{
+     grid-area:mainHeader ;
+     width: 100%;
+     height: 100%;
+     border-bottom: 2px solid var(--secondary-60) ;
+}
+
+.Container .mainContent{
+     grid-area:mainContent ;
+     width: 100%;
+     height: 100%;
+}
+
+
+.Container .manFooter{
+     grid-area:manFooter ;
+     width: 100%;
+     height: 100%;
+     border-top: 2px solid var(--secondary-60) ;
+}
+
+
+
+
+
+
+/* Media queries */
+
+@media only screen and (min-width: 560px) {
+
 }
