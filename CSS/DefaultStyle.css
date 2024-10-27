@@ -11,7 +11,7 @@
   /* card  Colours  Would be an array in JavaScript*/
 }
 
-
+ /* Resetting styles */
 * {
   margin: 0;
   padding: 0;
@@ -19,12 +19,21 @@
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }
+a{
+     color: var(--text);
+     text-decoration: none;
+
+}
+li {
+     list-style: none;
+}
 
 body{
      font-family: "Lato", sans-serif;
      height: 100vh;
      background-color: var(--background);
      color: var(--text);
+     min-width: 500px;
 }
 
 .Container{

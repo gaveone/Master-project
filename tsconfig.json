@@ -9,5 +9,5 @@
     "moduleResolution": "node",
   },
   "include": ["./TS/**/*.ts"],
-  "exclude":["node_modules"]
+  "exclude":["node_modules" , "JS"]
 }
