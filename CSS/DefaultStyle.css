@@ -62,24 +62,26 @@ body {
 }
 
 .mainHeader nav .left-nav {
-     margin-top: 22px;
-     width: 30%;
-     /* display: flex;
+     /* margin-top: 22px; */
+     /* width: 30%; */
+     display: flex;
      width: 20%;
-     padding: 25px 1%; */
+     padding: 25px 1%;
+
      /* height: 20%; */
      /* align-items: center; */
 
-     /* justify-content: space-between; */
+     justify-content: left;
 }
 
 .left-nav img {
      /* display: flex;
-     justify-content: space-between; */
+     justify-content: left; */
      width: 10%;
      height: auto;
-     float: left;
-     margin-right: 5%;
+
+     /* margin-right: 5%; */
+     margin-right: 10px;
 
 }
 
@@ -93,16 +95,18 @@ body {
      width: 20%;
      display: flex;
      align-items: center;
-     justify-content: space-between;
+     justify-content: right;
 }
 
 .right-nav img {
      width: 10%;
      height: auto;
+     margin-right: 10px;
 }
 
 .right-nav h2 {
      color: wheat;
+     margin-right: 20px;
 }
 
 
