@@ -1,5 +1,4 @@
 class CartlocalStorage {
-     
      constructor() {
           this.InitializeStorage();
      }
@@ -9,10 +8,7 @@ class CartlocalStorage {
                console.log("successfully created cart");
                
           }
-
-          
      }
-     
 
 }
 
