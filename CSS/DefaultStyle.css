@@ -24,6 +24,7 @@ body{
      font-family: "Lato", sans-serif;
      height: 100vh;
      background-color: var(--background);
+     color: var(--text);
 }
 
 .Container{
@@ -55,7 +56,35 @@ body{
      border-top: 2px solid var(--secondary-60) ;
 }
 
+/* Header styles */
+.mainHeader{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
 
+}
+.subHeader{
+     position: relative;
+     display: flex;
+     flex-direction: row;
+     width: 98%;
+
+}
+.subHeader .Navigation{
+     flex: 1 ;
+}
+.cartBox{
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     gap: 3px;
+}
+.cartBox h3{
+     font-size: 1.5rem;
+
+}
 
 
 
