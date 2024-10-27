@@ -17,5 +17,10 @@ class CartlocalStorage {
     getSize() {
         return this.cartData.length;
     }
+    update() {
+        // Get the ID of the object and the new object to update
+    }
+    add() {
+    }
 }
 export default CartlocalStorage;
