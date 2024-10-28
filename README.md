@@ -38,7 +38,7 @@ If you notice recent changes in the `main` branch, it is essential to update you
 
 ---
 
-**Thank you for your cooperation and dedication!**
+
 
 
 # Master Project Repository
