@@ -1,8 +1,9 @@
 class IndexedDBX {
     db = null;
+    dbReady; // Allow me to wait for the data to load
     constructor() {
         //   Initialize the database and create the bucket
-        this.InitialsStore().catch((e) => { console.error("Database initialization failed", e); });
+        this.dbReady = this.InitialsStore();
     }
     // Initialize a schema to store all Product
     async InitialsStore() {
@@ -37,6 +38,7 @@ class IndexedDBX {
      * Add new item to the indexDB database
      */
     async addItem(data) {
+        await this.dbReady; // Ensure the database is initialized
         console.log("attempt to add item");
         if (!this.db) {
             await this.InitialsStore();
@@ -49,27 +51,59 @@ class IndexedDBX {
             const addRequest = store.add(data);
             addRequest.onsuccess = () => {
                 console.log("Item successfully added:", data);
-                // Retrieve the item immediately after adding it
-                const getRequest = store.get(data.id);
-                getRequest.onsuccess = (event) => {
-                    const retrievedData = event.target.result;
-                    console.log("Retrieved item:", retrievedData);
-                };
-                getRequest.onerror = (e) => {
-                    console.error("Failed to retrieve item after adding:", e);
-                };
             };
             addRequest.onerror = (e) => {
                 console.error("Failed to add item. It may already exist:", e);
             };
-            // Listen for transaction completion
-            tx.oncomplete = () => {
-                console.log("Transaction completed successfully.");
-            };
-            tx.onerror = (e) => {
-                console.error("Transaction failed:", e);
+        }
+    }
+    async deleteItem(id) {
+        await this.dbReady; // Ensure the database is initialized
+        if (!this.db) {
+            await this.InitialsStore();
+        }
+        else {
+            const storageDB = this.db;
+            const tx = storageDB.transaction("store", "readwrite");
+            const store = tx.objectStore("store");
+            const deleteI = store.delete(id);
+            deleteI.onsuccess = () => {
+                console.log("Item successfully delete:", deleteI);
             };
         }
+    }
+    async getAllItem() {
+        console.log("getAllItem --- star");
+        await this.dbReady; // Ensure the database is initialized
+        if (!this.db) { // if there's no DB initialize the DB
+            this.InitialsStore();
+        }
+        return new Promise((resolve, reject) => {
+            if (this.db) {
+                const storageDB = this.db;
+                const tx = storageDB.transaction("store", "readonly");
+                const store = tx.objectStore("store");
+                console.log("getAllItem ==== Promise ");
+                const getAllI = store.getAll();
+                getAllI.onsuccess = (evt) => {
+                    const items = getAllI.result;
+                    console.log("All items:", items);
+                    resolve(items); // Resolve with the actual items
+                };
+                getAllI.onerror = (e) => {
+                    console.error("Failed to get all items:", e);
+                    reject(e);
+                };
+                tx.oncomplete = () => console.log("getAllItem transaction completed.");
+                tx.onerror = (e) => {
+                    console.error("getAllItem transaction failed:", e);
+                    reject(e);
+                };
+            }
+            else {
+                reject("Database not initialized");
+            }
+        });
     }
 }
 export default IndexedDBX;
