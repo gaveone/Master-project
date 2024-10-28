@@ -70,3 +70,15 @@ export function IdGenerator() {
 
 
 // converting audio files to base64
+
+
+
+
+
+// Convert an integer/ seconds to a time format 00:00
+export function Timeformat(params:number) {
+     const seconds  =  params % 60;
+     const Minute = Math.floor(params / 60);
+     return`${Minute == 0 ? "00" :Minute}:${seconds <10 ?("0"+seconds):seconds} `
+     
+}
