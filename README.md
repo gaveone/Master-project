@@ -41,7 +41,6 @@ If you notice recent changes in the `main` branch, it is essential to update you
 **Thank you for your cooperation and dedication!**
 
 
-
 # Master Project Repository
 
 Welcome to the Master Project repository! This README provides an overview of the repository branches and instructions on accessing each branch.

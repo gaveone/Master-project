@@ -11,5 +11,3 @@ const cartCount:HTMLHeadingElement | null = document.querySelector("[data-Cart-c
 if (cartCount) {
      cartCount.textContent = cart.getSize().toString();
 }
-
-
