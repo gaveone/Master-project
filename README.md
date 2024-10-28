@@ -1,4 +1,3 @@
-# Harmony Hub the new  name
 
 # Master Project Repository
 
