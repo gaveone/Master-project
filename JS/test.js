@@ -7,3 +7,6 @@ const cartCount = document.querySelector("[data-Cart-count]");
 if (cartCount) {
     cartCount.textContent = cart.getSize().toString();
 }
+fetch('https://dummyjson.com/products/categories')
+    .then(res => res.json())
+    .then(console.log);
