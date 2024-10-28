@@ -19,6 +19,19 @@ const cartCount: HTMLHeadingElement | null = document.querySelector("[data-Cart-
 const input: HTMLInputElement | null = document.querySelector("[data-Input-Test]");
 const dataTest: HTMLButtonElement | null = document.querySelector("[data-T-Test]");
 
+
+async function gellData() {
+    
+     try {
+          const items = await database.getAllItem();
+          console.log("Retrieved items:", items);
+     } catch (error) {
+          console.error("Failed to retrieve items:", error);
+     }
+     
+}
+gellData()
+
 dataTest?.addEventListener("click", async () => {
      try {
           console.log("click successful");

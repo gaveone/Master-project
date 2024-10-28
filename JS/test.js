@@ -10,16 +10,6 @@ console.log(IdGenerator());
 const cartCount = document.querySelector("[data-Cart-count]");
 const input = document.querySelector("[data-Input-Test]");
 const dataTest = document.querySelector("[data-T-Test]");
-async function gellData() {
-    try {
-        const items = await database.getAllItem();
-        console.log("Retrieved items:", items);
-    }
-    catch (error) {
-        console.error("Failed to retrieve items:", error);
-    }
-}
-gellData();
 dataTest?.addEventListener("click", async () => {
     try {
         console.log("click successful");
