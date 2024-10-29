@@ -1,15 +1,19 @@
 import CartlocalStorage from "./cartClass.js";
-import { IdGenerator, Timeformat } from "./Utilities.js";
+import { dummyData, Timeformat } from "./Utilities.js";
 import FileConverter from "./File.js";
 import IndexedDBX from "./database.js";
 console.log("test");
-// Initialize CartlocalStorage and IndexedDBX once
+//  all in initialization of instances
 const cart = new CartlocalStorage();
 const database = new IndexedDBX();
-console.log(IdGenerator());
+const fileInit = new FileConverter();
+// All dom selections
 const cartCount = document.querySelector("[data-Cart-count]");
 const input = document.querySelector("[data-Input-Test]");
 const dataTest = document.querySelector("[data-T-Test]");
+// dynamic variables
+// Dynamic Dom element
+// Get all product to show in the front end
 async function gellData() {
     try {
         const items = await database.getAllItem();
@@ -19,22 +23,22 @@ async function gellData() {
         console.error("Failed to retrieve items:", error);
     }
 }
+// Output
 gellData();
-dataTest?.addEventListener("click", async () => {
-    try {
-        console.log("click successful");
-        await database.addItem({ id: IdGenerator(), name: "ggggg" });
+// Handle the main audio play
+// All testing code below
+//  Make fake data
+async function fakeData() {
+    for (let index = 0; index < 20; index++) {
+        await database.addItem(dummyData());
     }
-    catch (error) {
-        console.error("Failed to add item to database:", error);
-    }
-});
+}
+// fakeData()
 if (cartCount) {
     cartCount.textContent = cart.getSize().toString();
 }
 if (input) {
     input.addEventListener("input", async (e) => {
-        const fileInit = new FileConverter();
         const inputFiles = e.target.files;
         if (inputFiles) {
             const listFile = Array.from(inputFiles);

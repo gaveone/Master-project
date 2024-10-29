@@ -109,6 +109,12 @@ body{
 }
 
 
+/* This is for the main audio */
+.audioMain{
+     visibility: hidden;
+}
+
+
 
 
 /* Media queries */

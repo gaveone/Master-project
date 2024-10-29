@@ -1,27 +1,27 @@
 import CartlocalStorage from "./cartClass.js";
-import { IdGenerator, Timeformat } from "./Utilities.js";
+import { dummyData, IdGenerator, Timeformat } from "./Utilities.js";
 import FileConverter from "./File.js";
 import IndexedDBX from "./database.js";
 
 
 console.log("test");
-// Initialize CartlocalStorage and IndexedDBX once
+//  all in initialization of instances
 const cart = new CartlocalStorage();
 const database = new IndexedDBX();
+const fileInit = new FileConverter();
 
-
-console.log(IdGenerator());
-
-
-
-
+// All dom selections
 const cartCount: HTMLHeadingElement | null = document.querySelector("[data-Cart-count]");
 const input: HTMLInputElement | null = document.querySelector("[data-Input-Test]");
 const dataTest: HTMLButtonElement | null = document.querySelector("[data-T-Test]");
 
+// dynamic variables
 
+
+// Dynamic Dom element
+
+// Get all product to show in the front end
 async function gellData() {
-    
      try {
           const items = await database.getAllItem();
           console.log("Retrieved items:", items);
@@ -30,18 +30,26 @@ async function gellData() {
      }
      
 }
+// Output
 gellData()
 
-dataTest?.addEventListener("click", async () => {
-     try {
-          console.log("click successful");
-          
-          await database.addItem({ id: IdGenerator(), name: "ggggg" });
-     } catch (error) {
-          console.error("Failed to add item to database:", error);
-     }
+// Handle the main audio play
 
-})
+
+
+
+
+// All testing code below
+
+//  Make fake data
+async function fakeData() {
+     for (let index = 0; index < 20; index++) {
+          await database.addItem(dummyData());
+     }
+     
+}
+// fakeData()
+
 
 if (cartCount) {
      cartCount.textContent = cart.getSize().toString();
@@ -49,7 +57,7 @@ if (cartCount) {
 
 if (input) {
      input.addEventListener("input", async (e) => {
-          const fileInit = new FileConverter();
+          
           const inputFiles = (e.target as HTMLInputElement).files;
           if (inputFiles) {
                const listFile = Array.from(inputFiles);

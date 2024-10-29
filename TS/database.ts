@@ -1,3 +1,14 @@
+type product = {
+     id:string
+     name: string,
+     price: number,
+     rate: number,
+     Description: string,
+     Image: string,
+     Video: string,
+     Audio: string,
+}
+
 class IndexedDBX {
      private db: IDBDatabase | null = null;
      private dbReady: Promise<IDBDatabase | null>;  // Allow me to wait for the data to load
@@ -10,7 +21,7 @@ class IndexedDBX {
      private async InitialsStore() {
           return new Promise<IDBDatabase | null>((resolve, reject) => {
                console.log("start--- InitialsStore");
-               const openRequest = indexedDB.open("harmonyHub", 1); // Create the database
+               const openRequest = indexedDB.open("harmonyHub", 1); // Create the Bucket
                openRequest.onupgradeneeded = (e) => {
                     //  cast target IDBOpenDBRequest 
                     const db = (e.target as IDBOpenDBRequest).result;
@@ -44,7 +55,7 @@ class IndexedDBX {
      /** 
       * Add new item to the indexDB database
       */
-     public async addItem(data: { id: string, name: string }) {
+     public async addItem(data: product) {
           await this.dbReady; // Ensure the database is initialized
           console.log("attempt to add item");
 
@@ -70,7 +81,7 @@ class IndexedDBX {
           }
 
      }
-
+     // This will delete an item in the index DB
      public async deleteItem(id: string) {
           await this.dbReady; // Ensure the database is initialized
           if (!this.db) {
@@ -84,43 +95,76 @@ class IndexedDBX {
                     console.log("Item successfully delete:", deleteI);
 
                }
+               deleteI.onerror = (e) =>{
+                    console.error("failed to  item ", e);
+               }
 
           }
      }
+     // Get all items in the store for display
      public async getAllItem() {
           console.log("getAllItem --- star");
           await this.dbReady; // Ensure the database is initialized
           if (!this.db) { // if there's no DB initialize the DB
                this.InitialsStore()
-          } 
+          }
 
-          return new Promise((resolve, reject) => {
+          return new Promise <product[] | []>((resolve, reject) => {
                if (this.db) {
                     const storageDB = this.db;
                     const tx = storageDB.transaction("store", "readonly")
                     const store = tx.objectStore("store");
                     console.log("getAllItem ==== Promise ");
-                    
-     
+
+
                     const getAllI = store.getAll()
                     getAllI.onsuccess = (evt) => {
                          const items = getAllI.result
                          console.log("All items:", items);
                          resolve(items); // Resolve with the actual items
-     
+
                     }
                     getAllI.onerror = (e) => {
                          console.error("Failed to get all items:", e);
                          reject(e);
-     
+
                     }
                     tx.oncomplete = () => console.log("getAllItem transaction completed.");
                     tx.onerror = (e) => {
                          console.error("getAllItem transaction failed:", e);
                          reject(e);
                     };
-               }else{
+               } else {
                     reject("Database not initialized");
+               }
+
+
+          })
+     }
+
+     public async GetUnique(id: string) {
+          await this.dbReady;
+          if (!this.db) {
+               this.InitialsStore()
+
+          }
+          return new Promise<product |null>((resolve, reject) => {
+               if(this.db) {
+                    const storageDB = this.db;
+                    const tx = storageDB.transaction("store", "readonly")
+                    const store = tx.objectStore("store");
+                    const getItem = store.get(id)
+                    getItem.onsuccess = (evt) => {
+                         console.log("successfully retrieved item");
+                         resolve(getItem.result as product);
+                         
+                    }
+                    getItem.onerror = (e) => {
+                         reject(null);
+                    }
+
+               }else{
+                    reject(null);
                }
               
 
@@ -129,6 +173,5 @@ class IndexedDBX {
 
 
 }
-
 
 export default IndexedDBX

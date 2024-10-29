@@ -1,8 +1,8 @@
-type CC = {name:string, Price:string, Rating:string,}
+
 
 
 class CartlocalStorage {
-     private cartData:CC[];
+     private cartData:string[];
      constructor() { // initialize the local storage and fetch the dealer
           this.InitializeStorage();
           this.cartData = this.LoadData()
@@ -15,7 +15,7 @@ class CartlocalStorage {
           }
      }
      private LoadData() {// Update the cart state
-          let data:(CC[] | []) = JSON.parse(localStorage.getItem("cart") || "[]");
+          let data:(string[] | []) = JSON.parse(localStorage.getItem("cart") || "[]");
           return data
      }
      public getSize() {

@@ -47,11 +47,46 @@ export function IdGenerator() {
     }
     return id;
 }
-// converting image files base64
-// converting audio files to base64
 // Convert an integer/ seconds to a time format 00:00
 export function Timeformat(params) {
     const seconds = params % 60;
     const Minute = Math.floor(params / 60);
     return `${Minute == 0 ? "00" : Minute}:${seconds < 10 ? ("0" + seconds) : seconds} `;
+}
+// Generate dummy data
+export function dummyData() {
+    const instruments = [
+        "Guitar",
+        "Piano",
+        "Violin",
+        "Drums",
+        "Flute",
+        "Saxophone",
+        "Trumpet",
+        "Cello",
+        "Clarinet",
+        "Bass Guitar",
+        "Ukulele",
+        "Harp",
+        "Banjo",
+        "Accordion",
+        "Synthesizer"
+    ];
+    const name = instruments[rand(0, instruments.length - 1)] + `${rand(2, 560)}`;
+    const price = rand(100, 2450);
+    const rate = rand(0, 5);
+    const Description = "";
+    const Image = "https://random-image-pepebigotes.vercel.app/api/random-image";
+    const Video = "";
+    const Audio = "";
+    return {
+        id: IdGenerator(),
+        name: name,
+        price: price,
+        rate: rate,
+        Description: Description,
+        Image: Image,
+        Video: Video,
+        Audio: Audio
+    };
 }
