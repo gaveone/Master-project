@@ -1,6 +1,19 @@
+type product = {
+     id:string
+     name: string,
+     price: number,
+     rate: number,
+     Description: string,
+     Image: string,
+     Video: string,
+     Audio: string,
+}
+
+
+
 //  Random number generator from the minimum to the maximum range
 function rand(min: number, max: number): number {
-     return Math.floor(Math.random() * (max - min +1) + min) ;
+     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 
@@ -21,9 +34,9 @@ export function IdGenerator() {
           "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
      ];
      //  Special characters
-     let  Special = ["!" , "$" , "*" , "%" , "&" ]
+     let Special = ["!", "$", "*", "%", "&"]
      while (SegmentCount != 3) {
-         
+
           for (let index = 0; index <= 7; index++) {
                let SegmentType = rand(0, 3);
                switch (SegmentType) {
@@ -44,11 +57,10 @@ export function IdGenerator() {
                          break;
                     }
 
-
                }
 
           }
-          
+
           if (SegmentCount < 2) {
                id += "-"
 
@@ -61,24 +73,53 @@ export function IdGenerator() {
 }
 
 
-
-// converting image files base64
-
-
-
-
-
-
-// converting audio files to base64
-
-
-
-
-
 // Convert an integer/ seconds to a time format 00:00
-export function Timeformat(params:number) {
-     const seconds  =  params % 60;
+export function Timeformat(params: number) {
+     const seconds = params % 60;
      const Minute = Math.floor(params / 60);
-     return`${Minute == 0 ? "00" :Minute}:${seconds <10 ?("0"+seconds):seconds} `
-     
+     return `${Minute == 0 ? "00" : Minute}:${seconds < 10 ? ("0" + seconds) : seconds} `
+
+}
+
+
+// Generate dummy data
+export function dummyData(): product {
+     const instruments = [
+          "Guitar",
+          "Piano",
+          "Violin",
+          "Drums",
+          "Flute",
+          "Saxophone",
+          "Trumpet",
+          "Cello",
+          "Clarinet",
+          "Bass Guitar",
+          "Ukulele",
+          "Harp",
+          "Banjo",
+          "Accordion",
+          "Synthesizer"
+     ];
+     const name = instruments[rand(0, instruments.length - 1)] + `${rand(2, 560)}`;
+     const price = rand(100, 2450)
+     const rate = rand(0, 5)
+     const Description = ""
+     const Image = "https://random-image-pepebigotes.vercel.app/api/random-image"
+     const Video = ""
+     const Audio = ""
+
+     return {
+          id:IdGenerator(),
+          name: name,
+          price: price,
+          rate: rate,
+          Description: Description,
+          Image: Image,
+          Video: Video,
+          Audio: Audio
+     }
+
+
+
 }

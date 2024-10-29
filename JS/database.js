@@ -9,7 +9,7 @@ class IndexedDBX {
     async InitialsStore() {
         return new Promise((resolve, reject) => {
             console.log("start--- InitialsStore");
-            const openRequest = indexedDB.open("harmonyHub", 1); // Create the database
+            const openRequest = indexedDB.open("harmonyHub", 1); // Create the Bucket
             openRequest.onupgradeneeded = (e) => {
                 //  cast target IDBOpenDBRequest 
                 const db = e.target.result;
@@ -57,6 +57,7 @@ class IndexedDBX {
             };
         }
     }
+    // This will delete an item in the index DB
     async deleteItem(id) {
         await this.dbReady; // Ensure the database is initialized
         if (!this.db) {
@@ -70,8 +71,12 @@ class IndexedDBX {
             deleteI.onsuccess = () => {
                 console.log("Item successfully delete:", deleteI);
             };
+            deleteI.onerror = (e) => {
+                console.error("failed to  item ", e);
+            };
         }
     }
+    // Get all items in the store for display
     async getAllItem() {
         console.log("getAllItem --- star");
         await this.dbReady; // Ensure the database is initialized
@@ -102,6 +107,30 @@ class IndexedDBX {
             }
             else {
                 reject("Database not initialized");
+            }
+        });
+    }
+    async GetUnique(id) {
+        await this.dbReady;
+        if (!this.db) {
+            this.InitialsStore();
+        }
+        return new Promise((resolve, reject) => {
+            if (this.db) {
+                const storageDB = this.db;
+                const tx = storageDB.transaction("store", "readonly");
+                const store = tx.objectStore("store");
+                const getItem = store.get(id);
+                getItem.onsuccess = (evt) => {
+                    console.log("successfully retrieved item");
+                    resolve(getItem.result);
+                };
+                getItem.onerror = (e) => {
+                    reject(null);
+                };
+            }
+            else {
+                reject(null);
             }
         });
     }
