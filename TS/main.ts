@@ -1,7 +1,7 @@
-import CartlocalStorage from "./cartClass.js";
-import { dummyData, IdGenerator, Timeformat } from "./Utilities.js";
-import FileConverter from "./File.js";
-import IndexedDBX from "./database.js";
+import CartlocalStorage from "./Utility/cartClass.js";
+import { dummyData, IdGenerator, Timeformat } from "./Utility/Utilities.js";
+import FileConverter from "./Utility/File.js";
+import IndexedDBX from "./Utility/database.js";
 
 
 console.log("test");
@@ -50,35 +50,6 @@ async function fakeData() {
 }
 // fakeData()
 
-
-if (cartCount) {
-     cartCount.textContent = cart.getSize().toString();
-}
-
-if (input) {
-     input.addEventListener("input", async (e) => {
-          
-          const inputFiles = (e.target as HTMLInputElement).files;
-          if (inputFiles) {
-               const listFile = Array.from(inputFiles);
-               try {
-                    // console.log( await fileInit.InitFile(listFile[0]));
-
-               } catch (error) {
-                    console.log(error);
-               }
-
-
-
-          }
-
-     })
-}
-
-
-
-
-console.log(Timeformat(500));
 
 
 
