@@ -2,21 +2,20 @@
 
 
 class CartlocalStorage {
-     private cartData:string[];
+     private cartData:string[] =[];
      constructor() { // initialize the local storage and fetch the dealer
           this.InitializeStorage();
-          this.cartData = this.LoadData()
+          
      }
      private InitializeStorage():void { // Initialize the local storage if it's there or not
           if (!localStorage.getItem("cart")){
                localStorage.setItem("cart", JSON.stringify([]));
                console.log("successfully created cart");
 
+          }else{
+               let data:(string[] | []) = JSON.parse(localStorage.getItem("cart") || "[]");
+               this.cartData = data;
           }
-     }
-     private LoadData() {// Update the cart state
-          let data:(string[] | []) = JSON.parse(localStorage.getItem("cart") || "[]");
-          return data
      }
      public getSize() {
           return this.cartData.length
@@ -26,7 +25,11 @@ class CartlocalStorage {
 
 
      }
-     public add(){
+     public add(item:string){
+          localStorage.setItem("cart", JSON.stringify([...this.cartData , item]));
+     }
+     public Delete(item:string){
+          localStorage.setItem("cart", JSON.stringify([...this.cartData.filter(oldItem => oldItem !== item)]));
 
      }
 
