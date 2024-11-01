@@ -20,19 +20,17 @@ class IndexedDBX {
      // Initialize a schema to store all Product
      private async InitialsStore() {
           return new Promise<IDBDatabase | null>((resolve, reject) => {
-               console.log("start--- InitialsStore");
+              
                const openRequest = indexedDB.open("harmonyHub", 1); // Create the Bucket
                openRequest.onupgradeneeded = (e) => {
                     //  cast target IDBOpenDBRequest 
                     const db = (e.target as IDBOpenDBRequest).result;
-                    console.log("start--- onupgradeneeded");
+                  
 
-
-                    this.db = db;
-                    // Check if we have this database
-                    if (!this.db.objectStoreNames.contains("store")) {
+                    // Check if we have this database called  "store"
+                    if (!db.objectStoreNames.contains("store")) {
                          // If we do not have this database, we will create the database
-                         this.db.createObjectStore("store", { keyPath: "id" })
+                         db.createObjectStore("store", { keyPath: "id" })
                     }
 
                }
@@ -56,16 +54,13 @@ class IndexedDBX {
       * Add new item to the indexDB database
       */
      public async addItem(data: product) {
-          await this.dbReady; // Ensure the database is initialized
-          console.log("attempt to add item");
-
-          if (!this.db) {
+         const db = await this.dbReady; // Ensure the database is initialized
+          if (!db) {
                await this.InitialsStore()
           } else {
                const storageDB = this.db;
-               const tx = storageDB.transaction("store", "readwrite")
+               const tx = db.transaction("store", "readwrite")
                const store = tx.objectStore("store")
-               console.log("adding something");
 
                const addRequest = store.add(data)
 
@@ -83,12 +78,11 @@ class IndexedDBX {
      }
      // This will delete an item in the index DB
      public async deleteItem(id: string) {
-          await this.dbReady; // Ensure the database is initialized
-          if (!this.db) {
+          const db = await this.dbReady; // Ensure the database is initialized
+          if (!db) {
                await this.InitialsStore()
           } else {
-               const storageDB = this.db;
-               const tx = storageDB.transaction("store", "readwrite")
+               const tx = db.transaction("store", "readwrite")
                const store = tx.objectStore("store")
                const deleteI = store.delete(id);
                deleteI.onsuccess = () => {
@@ -103,24 +97,23 @@ class IndexedDBX {
      }
      // Get all items in the store for display
      public async getAllItem() {
-          console.log("getAllItem --- star");
-          await this.dbReady; // Ensure the database is initialized
-          if (!this.db) { // if there's no DB initialize the DB
+         
+          const db = await this.dbReady; // Ensure the database is initialized
+          if (!db) { // if there's no DB initialize the DB
                this.InitialsStore()
           }
 
           return new Promise <product[] | []>((resolve, reject) => {
-               if (this.db) {
-                    const storageDB = this.db;
-                    const tx = storageDB.transaction("store", "readonly")
+               if (db) {
+                   
+                    const tx = db.transaction("store", "readonly")
                     const store = tx.objectStore("store");
-                    console.log("getAllItem ==== Promise ");
+                   
 
 
                     const getAllI = store.getAll()
                     getAllI.onsuccess = (evt) => {
                          const items = getAllI.result
-                         console.log("All items:", items);
                          resolve(items); // Resolve with the actual items
 
                     }
@@ -143,15 +136,14 @@ class IndexedDBX {
      }
 
      public async GetUnique(id: string) {
-          await this.dbReady;
-          if (!this.db) {
+          const db = await this.dbReady; // Ensure the database is initialized
+          if (!db) {
                this.InitialsStore()
 
           }
           return new Promise<product |null>((resolve, reject) => {
-               if(this.db) {
-                    const storageDB = this.db;
-                    const tx = storageDB.transaction("store", "readonly")
+               if(db) {
+                    const tx = db.transaction("store", "readonly")
                     const store = tx.objectStore("store");
                     const getItem = store.get(id)
                     getItem.onsuccess = (evt) => {
