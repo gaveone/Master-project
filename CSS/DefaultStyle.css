@@ -1,36 +1,40 @@
 :root {
-  --text: rgb(237, 235, 232);
-  --background: rgb(20, 18, 16);
-  --primary: rgb(192, 184, 175);
-  --primary-60: rgba(192, 184, 175, 0.6);
+     --text: rgb(237, 235, 232);
+     --background: rgb(20, 18, 16);
+     --primary: rgb(192, 184, 175);
+     --primary-60: rgba(192, 184, 175, 0.6);
 
-  --secondary: rgb(77, 91, 72);
-  --secondary-60: rgba(77, 91, 72, 0.6);
-  --accent: rgb(121, 150, 123);
+     --secondary: rgb(77, 91, 72);
+     --secondary-60: rgba(77, 91, 72, 0.6);
+     --accent: rgb(121, 150, 123);
 
-  /* card  Colours  Would be an array in JavaScript*/
+     /* card  Colours  Would be an array in JavaScript*/
 }
+
 /* This is a Google font  */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
- /* Resetting styles */
+
+/* Resetting styles */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     scroll-behavior: smooth;
+     -webkit-font-smoothing: antialiased;
 }
-a{
+
+a {
      color: var(--text);
      text-decoration: none;
 
 }
+
 li {
      list-style: none;
 }
 
-body{
+body {
      font-family: "Lato", sans-serif;
      height: 100vh;
      background-color: var(--background);
@@ -38,87 +42,144 @@ body{
      min-width: 500px;
 }
 
-.Container{
+.Container {
      display: grid;
      height: 100%;
-     grid-template-rows: 100px 1fr 150px ;
+     grid-template-rows: 100px 1fr 150px;
      grid-template-areas: "mainHeader" "mainContent" "manFooter";
 
 }
 
-.Container .mainHeader{
-     grid-area:mainHeader ;
+.Container .mainHeader {
+     grid-area: mainHeader;
      width: 100%;
      height: 100%;
-     border-bottom: 2px solid var(--secondary-60) ;
+     border-bottom: 2px solid var(--secondary-60);
 }
-.Container .mainHeader .Navigation span{
+
+.Container .mainHeader .Navigation span {
      font-family: "Dancing Script", cursive;
      color: var(--accent);
 }
 
-.Container .mainContent{
-     grid-area:mainContent ;
+.Container .mainContent {
+     grid-area: mainContent;
      width: 100%;
      height: 100%;
 }
 
 
-.Container .manFooter{
-     grid-area:manFooter ;
+.Container .manFooter {
+     grid-area: manFooter;
      width: 100%;
      height: 100%;
-     border-top: 2px solid var(--secondary-60) ;
+     border-top: 2px solid var(--secondary-60);
 }
 
 /* Header styles */
-.mainHeader{
+.mainHeader {
      display: flex;
      flex-direction: column;
      justify-content: center;
      align-items: center;
 
 }
-.subHeader{
+
+.subHeader {
      position: relative;
      display: flex;
      flex-direction: row;
      width: 98%;
 
 }
-.subHeader .Navigation{
-     flex: 1 ;
+
+.subHeader .Navigation {
+     flex: 1;
 }
-.cartBox{
+
+.cartBox {
      display: flex;
      flex-direction: row;
      justify-content: center;
      align-items: center;
      gap: 3px;
 }
-.cartBoxA{
+
+.cartBoxA {
      display: flex;
      flex-direction: row;
      justify-content: center;
      align-items: center;
 
 }
-.cartBox h3{
+
+.cartBox h3 {
      font-size: 1.5rem;
 
 }
 
 
 /* This is for the main audio */
-.audioMain{
+.audioMain {
      visibility: hidden;
 }
 
+.itemContainer {
+     padding: 3px;
+     display: grid;
+     grid-template-rows: 1fr 65px;
+     width: 225px;
+     height: 250px;
+     border: 1px solid var(--primary);
+     border-radius: 6px;
 
+}
 
+.itemImage {
+     width: 100%;
+     height: 100%;
+     background-color: aqua;
+     border-radius: 6px;
+}
+
+.itemContent {
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     gap: 15px;
+}
+
+.itemContent button {
+     padding-left: 4px;
+     padding-right: 4px;
+     padding-bottom: 2px;
+     padding-top: 2px;
+     background-color: var(--primary);
+     border: none;
+     border-radius: 12px;
+     text-align: center;
+     font-size: 1rem;
+}
+
+.itemTitle {
+     display: block;
+     font-size: 1.2rem;
+}
+
+.itemDetails {
+     /* margin-top: 15px; */
+     display: flex;
+     flex-direction: row;
+     gap: 4px;
+
+     align-items: center;
+}
+
+.itemDetails p {
+     flex: 1;
+}
 
 /* Media queries */
 
-@media only screen and (min-width: 560px) {
-
-}
+@media only screen and (min-width: 560px) {}
