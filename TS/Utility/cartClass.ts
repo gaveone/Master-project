@@ -10,7 +10,6 @@ class CartlocalStorage {
      private InitializeStorage():void { // Initialize the local storage if it's there or not
           if (!localStorage.getItem("cart")){
                localStorage.setItem("cart", JSON.stringify([]));
-               console.log("successfully created cart");
 
           }else{
                let data:(string[] | []) = JSON.parse(localStorage.getItem("cart") || "[]");
