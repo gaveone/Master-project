@@ -30,6 +30,7 @@ elements.forEach((item , index) =>{
 // dynamic variables
 if(cartCount) {
      cartCount.textContent = `${cart.getSize()}`
+     cartCount.style.color = "red"
 }
 
 

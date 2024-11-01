@@ -22,6 +22,7 @@ elements.forEach((item, index) => {
 // dynamic variables
 if (cartCount) {
     cartCount.textContent = `${cart.getSize()}`;
+    cartCount.style.color = "red";
 }
 // Dynamic Dom element
 // Get all product to show in the front end
