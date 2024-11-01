@@ -1,3 +1,44 @@
+# Branch Update Instructions
+
+## Important Notice
+If you notice recent changes in the `main` branch, it is essential to update your own branch with these changes to avoid conflicts and ensure consistency across the project.
+
+### Steps to Update Your Branch
+
+1. **Switch to Your Branch**
+   - Make sure you’re on your branch (e.g., `AD`, `BI`, `SK`) by using the command:
+     ```bash
+     git checkout <your-branch-name>
+     ```
+   
+2. **Pull Latest Changes from Main**
+   - Fetch the latest updates from the `main` branch:
+     ```bash
+     git fetch origin main
+     ```
+   - Merge the latest changes from `main` into your branch:
+     ```bash
+     git merge origin/main
+     ```
+
+3. **Resolve Any Conflicts**
+   - If there are any merge conflicts, resolve them in your local environment and commit the changes.
+
+4. **Push Updated Branch**
+   - After ensuring everything is working, push your updated branch:
+     ```bash
+     git push origin <your-branch-name>
+     ```
+
+### Additional Tips
+- Regularly check for updates in the `main` branch and repeat the steps above if there are any new changes.
+- Always test your code after merging to make sure everything is functioning as expected.
+- Reach out to the team if you encounter issues during the merge process.
+
+
+---
+
+
 
 
 # Master Project Repository

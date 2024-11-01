@@ -3,9 +3,11 @@
     "outDir": "./JS",
     "rootDir": "./TS",
     "strict": true,
-    "module": "commonjs",
-    "target": "ES2023"
+    "target": "ESNext",
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
   },
-  "include": ["TS/**/*"],
-  "exclude":["node_modules"]
+  "include": ["./TS/**/*.ts"],
+  "exclude":["node_modules" , "JS"]
 }
