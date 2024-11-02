@@ -1,0 +1,105 @@
+:root {
+     --text: rgb(237, 235, 232);
+     --background: rgb(20, 18, 16);
+     --primary: rgb(192, 184, 175);
+     --primary-60: rgba(192, 184, 175, 0.6);
+
+     --secondary: rgb(77, 91, 72);
+     --secondary-60: rgba(77, 91, 72, 0.6);
+     --accent: rgb(121, 150, 123);
+
+     /* card  Colours  Would be an array in JavaScript*/
+}
+
+.PorductList{
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     gap: 20px;
+     justify-content: center;
+     
+     padding-top: 6px;
+     height: 100%;
+}
+
+
+.mainContent{
+     display: flex;
+    
+     max-height: 700px;
+     overflow-y: auto
+     
+}
+
+
+.itemContainer {
+     padding: 3px;
+     display: grid;
+     grid-template-rows: 1fr 65px;
+     width: 270px;
+     height: 290px;
+     border: 1px solid var(--primary);
+     border-radius: 6px;
+
+}
+
+.itemImage {
+     width: 100%;
+     height: 100%;
+     background-color: aqua;
+     border-radius: 6px;
+     position: relative;
+     object-fit: cover;
+     overflow: hidden;
+}
+
+.itemImage img{
+     position: absolute;
+     width: 100%;
+     height: 100%;
+}
+
+.itemContent {
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     gap: 12px;
+}
+
+.itemContent button {
+     padding-left: 4px;
+     padding-right: 4px;
+     padding-bottom: 2px;
+     padding-top: 2px;
+     background-color: var(--primary);
+     border: none;
+     border-radius: 11px;
+     text-align: center;
+     font-size: 1.2rem;
+     transition: background-color 200ms ease-in-out;
+}
+.itemContent button:hover{
+     background-color: var(--primary-60);
+
+}
+
+.itemTitle {
+     display: block;
+     font-size: 1.3rem;
+}
+
+.itemDetails {
+     /* margin-top: 15px; */
+     display: grid;
+     grid-template-columns: 1fr 100px;
+     flex-direction: row;
+     gap: 40%;
+
+     align-items: center;
+}
+
+
+.itemPrice{
+     font-size: 1.11rem;
+}

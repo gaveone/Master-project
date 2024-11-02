@@ -2,33 +2,55 @@
 
 
 class CartlocalStorage {
-     private cartData:string[] =[];
-     constructor() { // initialize the local storage and fetch the dealer
+     private cartData: { id: string, count: number }[] = [];
+     constructor() {
+          // Initialize local storage and fetch the existing cart data
           this.InitializeStorage();
-          
+
      }
-     private InitializeStorage():void { // Initialize the local storage if it's there or not
-          if (!localStorage.getItem("cart")){
+     private InitializeStorage(): void {
+          // Check if "cart" exists in localStorage, if not, initialize it
+          if (!localStorage.getItem("cart")) {
                localStorage.setItem("cart", JSON.stringify([]));
 
-          }else{
-               let data:(string[] | []) = JSON.parse(localStorage.getItem("cart") || "[]");
+          } else {
+               let data: ({ id: string, count: number }[] | []) = JSON.parse(localStorage.getItem("cart") || "[]");
                this.cartData = data;
           }
      }
      public getSize() {
+          //  Update the cardData state
+          this.InitializeStorage()
           return this.cartData.length
      }
-     public update(){
-          // Get the ID of the object and the new object to update
+     public update(id: string, type: "increment" | "decrement") {
+          //  Update the cardData state
+          this.InitializeStorage()
 
+          const newCartDataIN = this.cartData.map(item => {
+               if (item.id === id) {
+                    item.count = type === "increment"? item.count += 1  :item.count -= 1 ;
+               }
+               return item;
+          })
+          localStorage.setItem("cart", JSON.stringify(newCartDataIN))
 
      }
-     public add(item:string){
-          localStorage.setItem("cart", JSON.stringify([...this.cartData , item]));
+     public add(item: { id: string, count: 0 }) {
+          //  Update the cardData state
+          this.InitializeStorage()
+
+          const existingItem = this.cartData.find(cart => cart.id === item.id);
+          if (existingItem) {
+               existingItem.count = existingItem.count +=1;
+          } else {
+               this.cartData.push(item)
+          }
+          localStorage.setItem("cart", JSON.stringify(this.cartData))
+
      }
-     public Delete(item:string){
-          localStorage.setItem("cart", JSON.stringify([...this.cartData.filter(oldItem => oldItem !== item)]));
+     public Delete(item: string) {
+          localStorage.setItem("cart", JSON.stringify([...this.cartData.filter(oldItem => oldItem.id !== item)]));
 
      }
 
