@@ -21,7 +21,13 @@ class CartlocalStorage {
      public getSize() {
           //  Update the cardData state
           this.InitializeStorage()
-          return this.cartData.length
+
+          let sun = 0
+          this.cartData.forEach((data) => {
+               sun += data.count
+          })
+
+          return sun
      }
      public update(id: string, type: "increment" | "decrement") {
           //  Update the cardData state
@@ -29,20 +35,20 @@ class CartlocalStorage {
 
           const newCartDataIN = this.cartData.map(item => {
                if (item.id === id) {
-                    item.count = type === "increment"? item.count += 1  :item.count -= 1 ;
+                    item.count = type === "increment" ? item.count += 1 : item.count -= 1;
                }
                return item;
           })
           localStorage.setItem("cart", JSON.stringify(newCartDataIN))
 
      }
-     public add(item: { id: string, count: 0 }) {
+     public add(item: { id: string, count: number }) {
           //  Update the cardData state
           this.InitializeStorage()
 
           const existingItem = this.cartData.find(cart => cart.id === item.id);
           if (existingItem) {
-               existingItem.count = existingItem.count +=1;
+               existingItem.count = existingItem.count += 1;
           } else {
                this.cartData.push(item)
           }

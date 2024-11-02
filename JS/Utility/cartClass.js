@@ -17,7 +17,11 @@ class CartlocalStorage {
     getSize() {
         //  Update the cardData state
         this.InitializeStorage();
-        return this.cartData.length;
+        let sun = 0;
+        this.cartData.forEach((data) => {
+            sun += data.count;
+        });
+        return sun;
     }
     update(id, type) {
         //  Update the cardData state
