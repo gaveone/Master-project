@@ -45,6 +45,10 @@ function Product({ id, Price, Header, img }) {
      `;
 }
 //  Add event business for every single product
+// Display the cart counter immediately
+if (cartCount) {
+    cartCount.textContent = `${cart.getSize()}`;
+}
 // Fetch all products from the database and display them on the front end
 async function gellData() {
     try {
@@ -69,19 +73,21 @@ async function gellData() {
                     const id = btn.getAttribute("data-add-cart");
                     // Add product to cart if the ID exists
                     if (id) {
-                        cart.add({ id: id, count: 0 });
+                        cart.add({ id: id, count: 1 });
+                        // Refresh the page
+                        if (cartCount) {
+                            cartCount.textContent = `${cart.getSize()}`;
+                        }
                     }
                 });
             });
-            // Update the cart count display
-            if (cartCount) {
-                cartCount.textContent = `${cart.getSize()}`;
-            }
+            // Refresh the page
         }
     }
     catch (error) {
         console.error("Failed to retrieve items:", error);
     }
+    // Update the cart count display
 }
 gellData();
 // Handle the main audio play
