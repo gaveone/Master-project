@@ -1,5 +1,5 @@
 type product = {
-     id:string
+     id: string
      name: string,
      price: number,
      rate: number,
@@ -82,44 +82,67 @@ export function Timeformat(params: number) {
 }
 
 
-// Generate dummy data
-export function dummyData(): product {
+// Async function to get an image of a specified instrument from Unsplash
+async function getImg(instrument: string) {
+
+     // Return a promise to handle asynchronous fetch operation
+     return new Promise<string>((resolver, Reject) => {
+
+          // Fetch an image based on the instrument search term from Unsplash API
+          fetch(`https://api.unsplash.com/search/photos?query=${instrument}&client_id=${"g0fQ7uOurfINiHhAOMPGwLZWRPwpvBizMbvkPMQ9PSE"}`)
+
+               // Convert the response to JSON format
+               .then(res => res.json())
+
+               // Resolve the promise with the first image's URL if found
+               .then(res => resolver(res.results[0].urls.regular))
+
+               // Reject the promise if there's an error in fetching or parsing
+               .catch(err => Reject(err));
+     });
+}
+
+
+
+// Generate dummy data for a product with an instrument image
+export async function dummyData(index: number) {
+
+     // List of instruments to choose randomly
      const instruments = [
-          "Guitar",
-          "Piano",
-          "Violin",
-          "Drums",
-          "Flute",
-          "Saxophone",
-          "Trumpet",
-          "Cello",
-          "Clarinet",
-          "Bass Guitar",
-          "Ukulele",
-          "Harp",
-          "Banjo",
-          "Accordion",
-          "Synthesizer"
+          "Guitar", "Piano", "Violin", "Drums", "Flute",
+          "Saxophone", "Trumpet", "Cello", "Clarinet", "Bass Guitar",
+          "Ukulele", "Harp", "Banjo", "Accordion", "Synthesizer"
      ];
-     const name = instruments[rand(0, instruments.length - 1)] + `${rand(2, 560)}`;
-     const price = rand(100, 2450)
-     const rate = rand(0, 5)
-     const Description = ""
-     const Image = "https://random-image-pepebigotes.vercel.app/api/random-image"
-     const Video = ""
-     const Audio = ""
 
-     return {
-          id:IdGenerator(),
-          name: name,
-          price: price,
-          rate: rate,
-          Description: Description,
-          Image: Image,
-          Video: Video,
-          Audio: Audio
-     }
+     // Select a random instrument name
+     const nameRaw = instruments[rand(0, instruments.length - 1)];
 
+     // Get an image URL for the selected instrument
+     const url = await getImg(nameRaw);
 
+     // Return a promise that resolves to a product object
+     return new Promise<product>((resolver, Reject) => {
 
+          // Generate random values for product details
+          const name = nameRaw + `${rand(2, 560)}`;
+          const price = rand(100, 2450);
+          const rate = rand(0, 5);
+          const Description = "";
+          const Image = url; // Use fetched URL from getImg function
+          const Video = "";
+          const Audio = "";
+
+          // Resolve the promise with the created product object
+          resolver({
+               id: IdGenerator(),
+               name: name,
+               price: price,
+               rate: rate,
+               Description: Description,
+               Image: Image,
+               Video: Video,
+               Audio: Audio
+          });
+
+     });
 }

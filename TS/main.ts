@@ -12,18 +12,8 @@ const fileInit = new FileConverter();
 
 // All dom selections
 const cartCount: HTMLHeadingElement | null = document.querySelector("[data-Cart-count]");
-const input: HTMLInputElement | null = document.querySelector("[data-Input-Test]");
-const dataTest: HTMLButtonElement | null = document.querySelector("[data-T-Test]");
-const DIV: HTMLDivElement | null = document.querySelector("[data-op]");
 const PorductList: HTMLDivElement | null = document.querySelector("[data-PorductList]");
 const CartAddBtu: HTMLButtonElement | null = document.querySelector("[data-Add-ToCart]");
-
-
-
-
-
-
-
 
 
 // Dynamic Dom element
@@ -57,7 +47,6 @@ function Product({ id, Price, Header, img }: { id: string, Price: number, Header
      `
 
 }
-//  Add event business for every single product
 // Display the cart counter immediately
 if (cartCount) {
      cartCount.textContent = `${cart.getSize()}`;
@@ -135,13 +124,15 @@ gellData();
 async function fakeData() {
      // Loop to create 20 sample products by calling the dummyData function
      // and adding each product to the database with the addItem method.
+     
      for (let index = 0; index < 20; index++) {
-          await database.addItem(dummyData());
+          const item = await dummyData(1)
+           await database.addItem(item);
      }
 }
 
 // Uncomment the line below to run the function once
-// fakeData()
+//fakeData()
 
 
 

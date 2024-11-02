@@ -1,5 +1,5 @@
 type product = {
-     id:string
+     id: string
      name: string,
      price: number,
      rate: number,
@@ -10,7 +10,7 @@ type product = {
 }
 
 class IndexedDBX {
-     private db: IDBDatabase | null = null;
+
      private dbReady: Promise<IDBDatabase | null>;  // Allow me to wait for the data to load
 
      constructor() {
@@ -20,12 +20,12 @@ class IndexedDBX {
      // Initialize a schema to store all Product
      private async InitialsStore() {
           return new Promise<IDBDatabase | null>((resolve, reject) => {
-              
+
                const openRequest = indexedDB.open("harmonyHub", 1); // Create the Bucket
                openRequest.onupgradeneeded = (e) => {
                     //  cast target IDBOpenDBRequest 
                     const db = (e.target as IDBOpenDBRequest).result;
-                  
+
 
                     // Check if we have this database called  "store"
                     if (!db.objectStoreNames.contains("store")) {
@@ -37,8 +37,8 @@ class IndexedDBX {
                // Successful open the Bucket
                openRequest.onsuccess = (e) => {
                     // This will initialize the database if successful
-                    this.db = (e.target as IDBOpenDBRequest).result;
-                    resolve(this.db);
+
+                    resolve((e.target as IDBOpenDBRequest).result);
                }
                //  failed to open bucket
                openRequest.onerror = (e) => {
@@ -54,11 +54,10 @@ class IndexedDBX {
       * Add new item to the indexDB database
       */
      public async addItem(data: product) {
-         const db = await this.dbReady; // Ensure the database is initialized
+          const db = await this.dbReady; // Ensure the database is initialized
           if (!db) {
                await this.InitialsStore()
           } else {
-               const storageDB = this.db;
                const tx = db.transaction("store", "readwrite")
                const store = tx.objectStore("store")
 
@@ -89,7 +88,7 @@ class IndexedDBX {
                     console.log("Item successfully delete:", deleteI);
 
                }
-               deleteI.onerror = (e) =>{
+               deleteI.onerror = (e) => {
                     console.error("failed to  item ", e);
                }
 
@@ -97,18 +96,18 @@ class IndexedDBX {
      }
      // Get all items in the store for display
      public async getAllItem() {
-         
+
           const db = await this.dbReady; // Ensure the database is initialized
           if (!db) { // if there's no DB initialize the DB
                this.InitialsStore()
           }
 
-          return new Promise <product[] | []>((resolve, reject) => {
+          return new Promise<product[] | []>((resolve, reject) => {
                if (db) {
-                   
+
                     const tx = db.transaction("store", "readonly")
                     const store = tx.objectStore("store");
-                   
+
 
 
                     const getAllI = store.getAll()
@@ -141,24 +140,24 @@ class IndexedDBX {
                this.InitialsStore()
 
           }
-          return new Promise<product |null>((resolve, reject) => {
-               if(db) {
+          return new Promise<product | null>((resolve, reject) => {
+               if (db) {
                     const tx = db.transaction("store", "readonly")
                     const store = tx.objectStore("store");
                     const getItem = store.get(id)
                     getItem.onsuccess = (evt) => {
                          console.log("successfully retrieved item");
                          resolve(getItem.result as product);
-                         
+
                     }
                     getItem.onerror = (e) => {
                          reject(null);
                     }
 
-               }else{
+               } else {
                     reject(null);
                }
-              
+
 
           })
      }

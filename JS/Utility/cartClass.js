@@ -47,6 +47,8 @@ class CartlocalStorage {
         localStorage.setItem("cart", JSON.stringify(this.cartData));
     }
     Delete(item) {
+        //  Update the cardData state
+        this.InitializeStorage();
         localStorage.setItem("cart", JSON.stringify([...this.cartData.filter(oldItem => oldItem.id !== item)]));
     }
 }
