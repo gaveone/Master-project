@@ -45,25 +45,35 @@ function Product({ id, Price, Header, img }) {
      `;
 }
 //  Add event business for every single product
-// Get all product to show in the front end
+// Fetch all products from the database and display them on the front end
 async function gellData() {
     try {
+        // Retrieve all items from the database
         const items = await database.getAllItem();
+        // Check if the product list container exists
         if (PorductList) {
-            items.forEach((item, index) => {
-                PorductList.insertAdjacentHTML("beforeend", Product({ id: item.id, Price: item.price, Header: item.name, img: item.Image }));
+            // Insert each product into the DOM
+            items.forEach((item) => {
+                PorductList.insertAdjacentHTML("beforeend", Product({
+                    id: item.id,
+                    Price: item.price,
+                    Header: item.name,
+                    img: item.Image
+                }));
             });
-            // After I did all the product add event listening for every single Add to cart button
-            const AddToCartBtu = Array.from(document.querySelectorAll("[data-add-cart]"));
-            AddToCartBtu.forEach((element) => {
+            // Add click event listeners to each "Add to Cart" button
+            const AddToCartBtn = Array.from(document.querySelectorAll("[data-add-cart]"));
+            AddToCartBtn.forEach((element) => {
                 element.addEventListener("click", (event) => {
-                    const btu = event.target;
-                    const idP = btu.getAttribute("data-add-cart");
-                    if (idP) {
-                        cart.add({ id: idP, count: 0 });
+                    const btn = event.target;
+                    const id = btn.getAttribute("data-add-cart");
+                    // Add product to cart if the ID exists
+                    if (id) {
+                        cart.add({ id: id, count: 0 });
                     }
                 });
             });
+            // Update the cart count display
             if (cartCount) {
                 cartCount.textContent = `${cart.getSize()}`;
             }
@@ -75,12 +85,16 @@ async function gellData() {
 }
 gellData();
 // Handle the main audio play
-// All testing code below
-// Disfunction creates dummy data so immediately you run the local 
-//server. Comment out the function call so it doesn't create too many
+// This function generates and inserts dummy product data into the database for testing purposes.
+// It should only be run once when setting up a local server environment to populate initial data.
+// Uncomment the function call below if you need to re-seed the database with sample products,
+// but remember to comment it out again after running to avoid creating duplicate entries.
 async function fakeData() {
+    // Loop to create 20 sample products by calling the dummyData function
+    // and adding each product to the database with the addItem method.
     for (let index = 0; index < 20; index++) {
         await database.addItem(dummyData());
     }
 }
+// Uncomment the line below to run the function once
 // fakeData()
