@@ -1,0 +1,12 @@
+:root {
+     --text: rgb(237, 235, 232);
+     --background: rgb(20, 18, 16);
+     --primary: rgb(192, 184, 175);
+     --primary-60: rgba(192, 184, 175, 0.6);
+
+     --secondary: rgb(77, 91, 72);
+     --secondary-60: rgba(77, 91, 72, 0.6);
+     --accent: rgb(121, 150, 123);
+
+     /* card  Colours  Would be an array in JavaScript*/
+}

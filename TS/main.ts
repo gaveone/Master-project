@@ -15,22 +15,11 @@ const cartCount: HTMLHeadingElement | null = document.querySelector("[data-Cart-
 const input: HTMLInputElement | null = document.querySelector("[data-Input-Test]");
 const dataTest: HTMLButtonElement | null = document.querySelector("[data-T-Test]");
 const DIV: HTMLDivElement | null = document.querySelector("[data-op]");
-
-const elements:(HTMLDivElement[]) = Array.from(document.querySelectorAll('[data-my-elements]'));
-elements.forEach((item , index) =>{
-     item.addEventListener("click", ()=>{
-          console.log("elements:", index);
-          elements[index].remove();
-          
-
-     })
-})
+const PorductList: HTMLDivElement | null = document.querySelector("[data-PorductList]");
+const CartAddBtu: HTMLButtonElement | null = document.querySelector("[data-Add-ToCart]");
 
 
-// dynamic variables
-if(cartCount) {
-     cartCount.textContent = `${cart.getSize()}`
-}
+
 
 
 
@@ -38,12 +27,76 @@ if(cartCount) {
 
 
 // Dynamic Dom element
+function Product({ id, Price, Header, img }: { id: string, Price: number, Header: string, img: string }) {
+     return `
+     <div data-Item-Container class="itemContainer">
+                         <a href="Product.html?id${id}">
+                              <div class="itemImage">
+                                   <img data-Item-Image src="${img}" alt="">
+
+                              </div>
+                         </a>
+
+                         <div class="itemContent">
+                              <a href="Product.html?id${id}">
+                                   <p data-Item-Header class="itemTitle">${Header}</p>
+                              </a>
+
+                              <div class="itemDetails">
+                                   <a  href="Product.html?id${id}">
+                                         <p class="itemPrice"  data-Item-Price>$${Price}</p>
+                                   </a>
+                                  
+                                   <button data-add-cart=${id}>add to cart</button>
+                              </div>
+
+                         </div>
+                    </div>
+     
+     
+     `
+
+}
+//  Add event business for every single product
+
+
+
+
+
+
+
 
 // Get all product to show in the front end
 async function gellData() {
      try {
           const items = await database.getAllItem();
-          console.log("Retrieved items:", items);
+          if (PorductList) {
+               items.forEach((item, index) => {
+                    PorductList.insertAdjacentHTML("beforeend", Product({ id: item.id, Price: item.price, Header: item.name, img: item.Image }));
+               })
+
+
+               // After I did all the product add event listening for every single Add to cart button
+               const AddToCartBtu: HTMLButtonElement[] = Array.from(document.querySelectorAll("[data-add-cart]"))
+               AddToCartBtu.forEach((element) => {
+                    element.addEventListener("click", (event) => {
+
+                         const btu = event.target as HTMLButtonElement;
+                         const idP = btu.getAttribute("data-add-cart");
+                        if (idP) {
+                         cart.add({id:idP ,count:0})
+                        }
+                         
+
+                    })
+               })
+
+               if (cartCount) {
+                    cartCount.textContent = `${cart.getSize()}`
+               }
+
+
+          }
      } catch (error) {
           console.error("Failed to retrieve items:", error);
      }
