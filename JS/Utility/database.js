@@ -1,5 +1,4 @@
 class IndexedDBX {
-    db = null;
     dbReady; // Allow me to wait for the data to load
     constructor() {
         //   Initialize the database and create the bucket
@@ -21,8 +20,7 @@ class IndexedDBX {
             // Successful open the Bucket
             openRequest.onsuccess = (e) => {
                 // This will initialize the database if successful
-                this.db = e.target.result;
-                resolve(this.db);
+                resolve(e.target.result);
             };
             //  failed to open bucket
             openRequest.onerror = (e) => {
@@ -40,7 +38,6 @@ class IndexedDBX {
             await this.InitialsStore();
         }
         else {
-            const storageDB = this.db;
             const tx = db.transaction("store", "readwrite");
             const store = tx.objectStore("store");
             const addRequest = store.add(data);

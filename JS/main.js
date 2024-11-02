@@ -9,9 +9,6 @@ const database = new IndexedDBX();
 const fileInit = new FileConverter();
 // All dom selections
 const cartCount = document.querySelector("[data-Cart-count]");
-const input = document.querySelector("[data-Input-Test]");
-const dataTest = document.querySelector("[data-T-Test]");
-const DIV = document.querySelector("[data-op]");
 const PorductList = document.querySelector("[data-PorductList]");
 const CartAddBtu = document.querySelector("[data-Add-ToCart]");
 // Dynamic Dom element
@@ -44,7 +41,6 @@ function Product({ id, Price, Header, img }) {
      
      `;
 }
-//  Add event business for every single product
 // Display the cart counter immediately
 if (cartCount) {
     cartCount.textContent = `${cart.getSize()}`;
@@ -99,8 +95,9 @@ async function fakeData() {
     // Loop to create 20 sample products by calling the dummyData function
     // and adding each product to the database with the addItem method.
     for (let index = 0; index < 20; index++) {
-        await database.addItem(dummyData());
+        const item = await dummyData(1);
+        await database.addItem(item);
     }
 }
 // Uncomment the line below to run the function once
-// fakeData()
+//fakeData()

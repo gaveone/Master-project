@@ -56,6 +56,8 @@ class CartlocalStorage {
 
      }
      public Delete(item: string) {
+           //  Update the cardData state
+           this.InitializeStorage()
           localStorage.setItem("cart", JSON.stringify([...this.cartData.filter(oldItem => oldItem.id !== item)]));
 
      }
