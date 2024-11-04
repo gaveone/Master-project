@@ -8,7 +8,7 @@ console.log("test====");
 //  all in initialization of instances
 const cart = new CartlocalStorage();
 const database = new IndexedDBX();
-const fileInit = new FileConverter();
+// const fileInit = new FileConverter();
 
 // All dom selections
 const cartCount: HTMLHeadingElement | null = document.querySelector("[data-Cart-count]");
@@ -104,35 +104,18 @@ async function gellData() {
           console.error("Failed to retrieve items:", error);
      }
 
-     // Update the cart count display
+    
     
 }
 
 gellData();
 
-// Handle the main audio play
 
 
 
 
 
-// This function generates and inserts dummy product data into the database for testing purposes.
-// It should only be run once when setting up a local server environment to populate initial data.
-// Uncomment the function call below if you need to re-seed the database with sample products,
-// but remember to comment it out again after running to avoid creating duplicate entries.
 
-async function fakeData() {
-     // Loop to create 20 sample products by calling the dummyData function
-     // and adding each product to the database with the addItem method.
-     
-     for (let index = 0; index < 20; index++) {
-          const item = await dummyData(1)
-           await database.addItem(item);
-     }
-}
-
-// Uncomment the line below to run the function once
-//fakeData()
 
 
 
