@@ -1,0 +1,88 @@
+:root {
+  --text: rgb(237, 235, 232);
+  --background: rgb(20, 18, 16);
+  --primary: rgb(192, 184, 175);
+  --primary-60: rgba(192, 184, 175, 0.6);
+
+  --secondary: rgb(77, 91, 72);
+  --secondary-60: rgba(77, 91, 72, 0.6);
+  --accent: rgb(121, 150, 123);
+
+  /* card  Colours  Would be an array in JavaScript*/
+}
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  height: 100vh;
+  background-color: var(--background);
+  color: var(--text);
+  min-width: 500px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.InputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.loginBox {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+}
+
+.InputS {
+  padding: 3px;
+  border-radius: 4px;
+  font-size: 1.4rem;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--text);
+}
+
+:inputs::placeholder {
+}
+
+.InputS:focus {
+}
+
+
+.btu{
+     border-radius: 4px;
+     border: 1px solid var(--primary);
+     color: var(--text);
+     background-color: transparent;
+     font-size: 1.2rem;
+     width: 155px;
+     transition: all 300ms ease-in-out ;
+}
+
+.btu:hover{
+     background-color:var(--text);
+     color:var(--background) ;
+
+}
+
+.errorMessage{
+  font-weight: 300;
+  color: crimson;
+  text-align: center;
+}
+
+

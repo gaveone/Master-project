@@ -10,3 +10,7 @@
 
      /* card  Colours  Would be an array in JavaScript*/
 }
+h1{
+     color: var(--background);
+     background-color: var(--accent);
+}

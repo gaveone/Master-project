@@ -1,9 +1,11 @@
 import CartlocalStorage from "./Utility/cartClass.js";
 import IndexedDBX from "./Utility/database.js";
+import Auth from "./Utility/Authentication.js";
 console.log("test====");
 //  all in initialization of instances
 const cart = new CartlocalStorage();
 const database = new IndexedDBX();
+const authentication = new Auth();
 // const fileInit = new FileConverter();
 // All dom selections
 const cartCount = document.querySelector("[data-Cart-count]");
