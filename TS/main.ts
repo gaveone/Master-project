@@ -2,12 +2,18 @@ import CartlocalStorage from "./Utility/cartClass.js";
 import { dummyData, IdGenerator, Timeformat } from "./Utility/Utilities.js";
 import FileConverter from "./Utility/File.js";
 import IndexedDBX from "./Utility/database.js";
+import Auth from "./Utility/Authentication.js";
+
+
+
+
 
 
 console.log("test====");
 //  all in initialization of instances
 const cart = new CartlocalStorage();
 const database = new IndexedDBX();
+const  authentication =  new Auth();
 // const fileInit = new FileConverter();
 
 // All dom selections

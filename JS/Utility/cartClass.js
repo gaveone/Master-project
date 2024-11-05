@@ -26,13 +26,16 @@ class CartlocalStorage {
     update(id, type) {
         //  Update the cardData state
         this.InitializeStorage();
-        const newCartDataIN = this.cartData.map(item => {
-            if (item.id === id) {
-                item.count = type === "increment" ? item.count += 1 : item.count -= 1;
+        let newCartDataINE = [];
+        this.cartData.forEach((data) => {
+            if (data.id === id) {
+                data.count = type === "increment" ? data.count += 1 : data.count -= 1;
             }
-            return item;
+            if (data.count !== 0 || data.count < 0) {
+                newCartDataINE.push(data);
+            }
         });
-        localStorage.setItem("cart", JSON.stringify(newCartDataIN));
+        localStorage.setItem("cart", JSON.stringify(newCartDataINE));
     }
     add(item) {
         //  Update the cardData state
