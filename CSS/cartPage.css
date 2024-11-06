@@ -10,7 +10,141 @@
 
      /* card  Colours  Would be an array in JavaScript*/
 }
-h1{
+/* h1{
      color: var(--background);
      background-color: var(--accent);
-}
+} */
+
+
+ .super_container {
+     display: flex;
+     justify-content: center;
+     padding: 20px;
+ }
+ 
+ .checkout-grid {
+     display: flex;
+     gap: 20px;
+     width: 80%;
+ }
+ 
+ /* Left grid (Product details) */
+ .left-grid {
+     background-color: white;
+     padding: 20px;
+     border-radius: 5px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     width: 48%;
+ }
+ 
+ .grid-header {
+     display: grid;
+     grid-template-columns: 2fr 1fr 1fr; /* Adjust to fit description, price, and quantity */
+     text-align: center;
+     background-color: #333;
+     color: white;
+     padding: 10px 0;
+     border-radius: 5px;
+     margin-bottom: 20px;
+ }
+ 
+ .header-item {
+     font-weight: bold;
+ }
+ 
+ .product {
+     display: grid;
+     grid-template-columns: 2fr 1fr 1fr; /* Adjust to fit description, price, and quantity */
+     align-items: center;
+     padding: 10px 0;
+     border-bottom: 1px solid #ddd;
+ }
+ 
+ .product-description {
+     display: flex;
+     flex-direction: column; /* Stack image and product name vertically */
+     align-items: center;
+ }
+ 
+ .product-description img {
+     width: 100px;
+     height: 100px;
+     object-fit: cover;
+     margin-bottom: 10px; /* Space between image and name */
+ }
+ 
+ .product-name {
+     font-size: 14px;
+     color: black; 
+     text-align: center; /* Center the name under the image */
+ }
+ 
+ .product-price,
+ .product-quantity {
+     text-align: center;
+     color: black; 
+ }
+ 
+ /* Right grid (Customer Information) */
+ .right-grid {
+     background-color: white;
+     padding: 20px;
+     border-radius: 5px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     width: 48%; /* Make both grids fit side by side */
+ }
+ 
+ .order-details-header {
+     text-align: center;
+     font-size: 18px;
+     font-weight: bold;
+     background-color: #333;
+     color: white;
+     padding: 10px;
+     margin-bottom: 20px;
+ }
+ 
+ .customer-info {
+     background-color: #f2f2f2;
+     padding: 10px;
+     border-radius: 5px;
+     margin-bottom: 20px;
+ }
+ 
+ .customer-row {
+     display: flex;
+     justify-content: space-between;
+     padding: 10px 0;
+     color: black;
+ }
+ 
+ .label {
+     font-weight: bold;
+ }
+ 
+ .value {
+     text-align: right;
+ }
+ 
+ hr {
+     border: 1px solid #ddd;
+     margin: 10px 0;
+ }
+ 
+ .place-order button {
+     display: block;
+     width: 100%;
+     padding: 15px;
+     background-color: #333;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     font-size: 16px;
+     cursor: pointer;
+     transition: background-color 0.3s;
+ }
+ 
+ .place-order button:hover {
+     background-color: #555;
+ }
+ 
