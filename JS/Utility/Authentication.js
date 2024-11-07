@@ -4,9 +4,6 @@ class Auth {
     constructor() {
         // The constructor will check if we're logged in then redirect the user to the right location
     }
-    /**
-     * name
-     */
     LoginAuth(email) {
         // Check if there's a user logged in
         // If there's no user logged in, we will log that user in with the email 

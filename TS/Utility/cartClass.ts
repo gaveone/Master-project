@@ -2,7 +2,7 @@
 
 
 class CartlocalStorage {
-     private cartData: { id: string, count: number }[] = [];
+     public cartData: { id: string, count: number }[] = [];
      constructor() {
           // Initialize local storage and fetch the existing cart data
           this.InitializeStorage();
@@ -45,6 +45,7 @@ class CartlocalStorage {
           })
 
           localStorage.setItem("cart", JSON.stringify(newCartDataINE))
+          window.location.reload()
 
      }
      public add(item: { id: string, count: number }) {

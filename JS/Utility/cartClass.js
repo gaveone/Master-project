@@ -36,6 +36,7 @@ class CartlocalStorage {
             }
         });
         localStorage.setItem("cart", JSON.stringify(newCartDataINE));
+        window.location.reload();
     }
     add(item) {
         //  Update the cardData state

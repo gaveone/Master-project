@@ -20,8 +20,6 @@ function Validate(email: string) {
                return true;
           }
      }
-
-
      return false;
 }
 
