@@ -59,6 +59,7 @@ async function FetchCart() {
     const IncrementList = Array.from(document.querySelectorAll("[data-increase]"));
     const DecrementList = Array.from(document.querySelectorAll("[data-decrease]"));
     const totalCost = document.querySelector("[data-total-cost]");
+    const cartCount = document.querySelector("[data-Cart-count]");
     // Set up increment buttons to update cart quantities
     IncrementList.forEach(Increment => {
         Increment.addEventListener("click", (e) => {
@@ -81,6 +82,10 @@ async function FetchCart() {
     // Display the total cost of all goods in the cart
     if (totalCost) {
         totalCost.textContent = `$ ${Intl.NumberFormat().format(TotalCostOfGoods)}`;
+    }
+    // Display the cart counter immediately
+    if (cartCount) {
+        cartCount.textContent = `${CART.getSize()}`;
     }
 }
 // Test function to execute FetchCart and log results
