@@ -1,150 +1,287 @@
 :root {
-     --text: rgb(237, 235, 232);
-     --background: rgb(20, 18, 16);
-     --primary: rgb(192, 184, 175);
-     --primary-60: rgba(192, 184, 175, 0.6);
+  --text: rgb(237, 235, 232);
+  --background: rgb(20, 18, 16);
+  --primary: rgb(192, 184, 175);
+  --primary-60: rgba(192, 184, 175, 0.6);
 
-     --secondary: rgb(77, 91, 72);
-     --secondary-60: rgba(77, 91, 72, 0.6);
-     --accent: rgb(121, 150, 123);
+  --secondary: rgb(77, 91, 72);
+  --secondary-60: rgba(77, 91, 72, 0.6);
+  --accent: rgb(121, 150, 123);
 
-     /* card  Colours  Would be an array in JavaScript*/
+  /* card  Colours  Would be an array in JavaScript*/
 }
 /* h1{
      color: var(--background);
      background-color: var(--accent);
 } */
 
+.super_container {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  overflow: hidden;
+}
 
- .super_container {
-     display: flex;
-     justify-content: center;
-     padding: 20px;
- }
- 
- .checkout-grid {
-     display: flex;
-     gap: 20px;
-     width: 80%;
- }
- 
- /* Left grid (Product details) */
- .left-grid {
-     background-color: white;
-     padding: 20px;
-     border-radius: 5px;
-     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-     width: 48%;
- }
- 
- .grid-header {
-     display: grid;
-     grid-template-columns: 2fr 1fr 1fr; /* Adjust to fit description, price, and quantity */
-     text-align: center;
-     background-color: #333;
-     color: white;
-     padding: 10px 0;
-     border-radius: 5px;
-     margin-bottom: 20px;
- }
- 
- .header-item {
-     font-weight: bold;
- }
- 
- .product {
-     display: grid;
-     grid-template-columns: 2fr 1fr 1fr; /* Adjust to fit description, price, and quantity */
-     align-items: center;
-     padding: 10px 0;
-     border-bottom: 1px solid #ddd;
- }
- 
- .product-description {
-     display: flex;
-     flex-direction: column; /* Stack image and product name vertically */
-     align-items: center;
- }
- 
- .product-description img {
-     width: 100px;
-     height: 100px;
-     object-fit: cover;
-     margin-bottom: 10px; /* Space between image and name */
- }
- 
- .product-name {
-     font-size: 14px;
-     color: black; 
-     text-align: center; /* Center the name under the image */
- }
- 
- .product-price,
- .product-quantity {
-     text-align: center;
-     color: black; 
- }
- 
- /* Right grid (Customer Information) */
- .right-grid {
-     background-color: white;
-     padding: 20px;
-     border-radius: 5px;
-     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-     width: 48%; /* Make both grids fit side by side */
- }
- 
- .order-details-header {
-     text-align: center;
-     font-size: 18px;
-     font-weight: bold;
-     background-color: #333;
-     color: white;
-     padding: 10px;
-     margin-bottom: 20px;
- }
- 
- .customer-info {
-     background-color: #f2f2f2;
-     padding: 10px;
-     border-radius: 5px;
-     margin-bottom: 20px;
- }
- 
- .customer-row {
-     display: flex;
-     justify-content: space-between;
-     padding: 10px 0;
-     color: black;
- }
- 
- .label {
-     font-weight: bold;
- }
- 
- .value {
-     text-align: right;
- }
- 
- hr {
-     border: 1px solid #ddd;
-     margin: 10px 0;
- }
- 
- .place-order button {
-     display: block;
-     width: 100%;
-     padding: 15px;
-     background-color: #333;
-     color: white;
-     border: none;
-     border-radius: 5px;
-     font-size: 16px;
-     cursor: pointer;
-     transition: background-color 0.3s;
- }
- 
- .place-order button:hover {
-     background-color: #555;
- }
- 
+.checkout-grid {
+  display: flex;
+  gap: 20px;
+  width: 80%;
+}
+
+/* Left grid (Product details) */
+.left-grid {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: 100%  ;
+  width: 48%;
+}
+
+.grid-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr; /* Adjust to fit description, price, and quantity */
+  text-align: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+/* Product card enhanced */
+.product{
+  display: grid;
+  grid-template-columns: 170px 1fr 130px;
+  max-height: 170px;
+  border-bottom: 2px  solid rgba(0, 0, 0, 0.1) ;
+  overflow: hidden;
+}
+
+.cartImgBox{
+  height: 170px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px  solid rgba(0, 0, 0, 0.1) ;
+}
+
+.cartImgBox img{
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+
+}
+
+.cartDetailsBox{
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px  solid rgba(0, 0, 0, 0.1) ;
+  gap: 5px;
+}
+.cartDetailsBoxSub{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+.Cname{
+  font-size: 1.4rem;
+  color: var(--background);
+}
+
+.Cprice{
+  font-size: 1.2rem;
+  color: var(--background);
+}
+.Crating{
+  color: cornflowerblue;
+}
+
+
+.header-item {
+  font-weight: bold;
+}
+
+
+/* Right grid (Customer Information) */
+.right-grid {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 48%; /* Make both grids fit side by side */
+}
+
+.order-details-header {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.customer-info {
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.customer-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  color: black;
+}
+.customer-row input {
+  width: 150px;
+  border-radius: 2px;
+  background-color: transparent;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+  transition: border 250ms ease-in-out;
+}
+.customer-row input:hover {
+    border: 0.5px solid rgba(0, 0, 0, 0.6);
+  }
+
+.label {
+  font-weight: bold;
+}
+
+.value {
+  text-align: right;
+}
+
+hr {
+  border: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+.place-order button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.place-order button:hover {
+  background-color: #555;
+}
+
+.cartlist {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.editBut{
+    border: none;
+    
+}
+
+
+.InputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.loginBox {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+}
+
+.InputS {
+  padding: 3px;
+  border-radius: 4px;
+  font-size: 1.4rem;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--text);
+}
+
+
+.buttonD{
+  display: block;
+  width: 30px;
+  height: 30px;
+  font-size: 24px;
+  text-align: center;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.quantityControlBox{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.mutationsBox{
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+}
+.mutationsBox p{
+  font-size: 1.4rem;
+  color: var(--background);
+
+}
+
+
+
+
+.buttonD:hover{
+  background-color: #555;
+}
+
+
+
+@media (max-width: 1300px){
+  .super_container {
+    overflow: scroll;
+  }
+  .checkout-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+    align-items: center
+  }
+  .right-grid{
+    width:85% ;
+
+  }
+  .left-grid{
+    width:85% ;
+    min-height: 700px;
+
+  }
+}

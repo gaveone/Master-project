@@ -12,10 +12,6 @@ class Auth {
           
      }
 
-
-     /**
-      * name
-      */
      public LoginAuth(email:string) {
 
           // Check if there's a user logged in
