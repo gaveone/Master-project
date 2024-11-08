@@ -92,7 +92,7 @@
 .itemDetails {
      /* margin-top: 15px; */
      display: grid;
-     grid-template-columns: 1fr 100px;
+     grid-template-columns: 1fr 110px;
      flex-direction: row;
      gap: 40%;
 
