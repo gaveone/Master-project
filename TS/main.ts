@@ -1,11 +1,11 @@
 import CartlocalStorage from "./Utility/cartClass.js";
-import { dummyData, IdGenerator, Timeformat } from "./Utility/Utilities.js";
+import { dummyData, IdGenerator, pageTransition, Timeformat } from "./Utility/Utilities.js";
 import FileConverter from "./Utility/File.js";
 import IndexedDBX from "./Utility/database.js";
 import Auth from "./Utility/Authentication.js";
 
-
-
+// This will handle the transition effect
+pageTransition()
 
 
 
@@ -26,7 +26,7 @@ const CartAddBtu: HTMLButtonElement | null = document.querySelector("[data-Add-T
 function Product({ id, Price, Header, img }: { id: string, Price: number, Header: string, img: string }) {
      return `
      <div data-Item-Container class="itemContainer">
-                         <a href="Product.html?id${id}">
+                         <a href="Product.html?id=${id}"   >
                               <div class="itemImage">
                                    <img data-Item-Image src="${img}" alt="">
 
@@ -34,12 +34,12 @@ function Product({ id, Price, Header, img }: { id: string, Price: number, Header
                          </a>
 
                          <div class="itemContent">
-                              <a href="Product.html?id${id}">
+                              <a href="Product.html?id=${id}" >
                                    <p data-Item-Header class="itemTitle">${Header}</p>
                               </a>
 
                               <div class="itemDetails">
-                                   <a  href="Product.html?id${id}">
+                                   <a  href="Product.html?id=${id}" >
                                          <p class="itemPrice"  data-Item-Price>$${Price}</p>
                                    </a>
                                   

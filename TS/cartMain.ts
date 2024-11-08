@@ -1,5 +1,7 @@
+import Auth from "./Utility/Authentication.js";
 import CartlocalStorage from "./Utility/cartClass.js"
 import IndexedDBX from "./Utility/database.js"
+import { pageTransition } from "./Utility/Utilities.js";
 
 // Define the structure for a product type
 type product = {
@@ -17,6 +19,10 @@ type product = {
 interface FetchedCart extends product {
      Quantity: number
 }
+// This will handle the transition effect
+pageTransition()
+
+const authentication = new Auth();
 
 // Select cart list HTML element
 const cartlist: HTMLDivElement | null = document.querySelector("[data-cartlist]")
@@ -24,6 +30,9 @@ const cartlist: HTMLDivElement | null = document.querySelector("[data-cartlist]"
 // Initialize instances of cart and database classes
 const CART = new CartlocalStorage()
 const Database = new IndexedDBX()
+
+
+
 
 // Function to create a cart item card with provided details
 function cartCard(name: string, rating: number, Price: number, img: string, id: string, Quantity: number) {

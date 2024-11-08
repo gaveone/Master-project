@@ -1,6 +1,9 @@
 import CartlocalStorage from "./Utility/cartClass.js";
+import { pageTransition } from "./Utility/Utilities.js";
 import IndexedDBX from "./Utility/database.js";
 import Auth from "./Utility/Authentication.js";
+// This will handle the transition effect
+pageTransition();
 console.log("test====");
 //  all in initialization of instances
 const cart = new CartlocalStorage();
@@ -15,7 +18,7 @@ const CartAddBtu = document.querySelector("[data-Add-ToCart]");
 function Product({ id, Price, Header, img }) {
     return `
      <div data-Item-Container class="itemContainer">
-                         <a href="Product.html?id${id}">
+                         <a href="Product.html?id=${id}"   >
                               <div class="itemImage">
                                    <img data-Item-Image src="${img}" alt="">
 
@@ -23,12 +26,12 @@ function Product({ id, Price, Header, img }) {
                          </a>
 
                          <div class="itemContent">
-                              <a href="Product.html?id${id}">
+                              <a href="Product.html?id=${id}" >
                                    <p data-Item-Header class="itemTitle">${Header}</p>
                               </a>
 
                               <div class="itemDetails">
-                                   <a  href="Product.html?id${id}">
+                                   <a  href="Product.html?id=${id}" >
                                          <p class="itemPrice"  data-Item-Price>$${Price}</p>
                                    </a>
                                   

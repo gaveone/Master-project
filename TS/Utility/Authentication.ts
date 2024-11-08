@@ -2,11 +2,22 @@
 
 // Simple website authentication using sessions
 
+import { pageTransition } from "./Utilities.js";
+
 class Auth {
      public  user:string |null = null;
 
      constructor() {
           // The constructor will check if we're logged in then redirect the user to the right location
+          const oldUrl = window.location.href ;
+          console.log(oldUrl);
+          
+          if (!sessionStorage.getItem("authentication")){
+
+               window.location.href = "login.html";
+               
+               
+          }
           
 
           

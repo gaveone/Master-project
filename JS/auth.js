@@ -1,4 +1,7 @@
 import Auth from "./Utility/Authentication.js";
+import { pageTransition } from "./Utility/Utilities.js";
+// This will handle the transition effect
+pageTransition();
 const authentication = new Auth();
 const loggedBtu = document.querySelector("[data-loggedBtu]");
 const loggedIN = document.querySelector("[data-loggedIN]");

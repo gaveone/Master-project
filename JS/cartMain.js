@@ -1,5 +1,10 @@
+import Auth from "./Utility/Authentication.js";
 import CartlocalStorage from "./Utility/cartClass.js";
 import IndexedDBX from "./Utility/database.js";
+import { pageTransition } from "./Utility/Utilities.js";
+// This will handle the transition effect
+pageTransition();
+const authentication = new Auth();
 // Select cart list HTML element
 const cartlist = document.querySelector("[data-cartlist]");
 // Initialize instances of cart and database classes

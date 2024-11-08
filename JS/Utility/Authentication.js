@@ -3,6 +3,11 @@ class Auth {
     user = null;
     constructor() {
         // The constructor will check if we're logged in then redirect the user to the right location
+        const oldUrl = window.location.href;
+        console.log(oldUrl);
+        if (!sessionStorage.getItem("authentication")) {
+            window.location.href = "login.html";
+        }
     }
     LoginAuth(email) {
         // Check if there's a user logged in
