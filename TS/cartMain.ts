@@ -1,5 +1,7 @@
+import Auth from "./Utility/Authentication.js";
 import CartlocalStorage from "./Utility/cartClass.js"
 import IndexedDBX from "./Utility/database.js"
+import { pageTransition } from "./Utility/Utilities.js";
 
 // Define the structure for a product type
 type product = {
@@ -17,6 +19,10 @@ type product = {
 interface FetchedCart extends product {
      Quantity: number
 }
+// This will handle the transition effect
+pageTransition()
+
+const authentication = new Auth();
 
 // Select cart list HTML element
 const cartlist: HTMLDivElement | null = document.querySelector("[data-cartlist]")
@@ -24,6 +30,9 @@ const cartlist: HTMLDivElement | null = document.querySelector("[data-cartlist]"
 // Initialize instances of cart and database classes
 const CART = new CartlocalStorage()
 const Database = new IndexedDBX()
+
+
+
 
 // Function to create a cart item card with provided details
 function cartCard(name: string, rating: number, Price: number, img: string, id: string, Quantity: number) {
@@ -87,13 +96,15 @@ async function FetchCart() {
      const IncrementList: HTMLButtonElement[] = Array.from(document.querySelectorAll("[data-increase]"))
      const DecrementList: HTMLButtonElement[] = Array.from(document.querySelectorAll("[data-decrease]"))
      const totalCost: HTMLDivElement | null = document.querySelector("[data-total-cost]")
+     const cartCount: HTMLHeadingElement | null = document.querySelector("[data-Cart-count]");
+
 
      // Set up increment buttons to update cart quantities
      IncrementList.forEach(Increment => {
           Increment.addEventListener("click", (e) => {
                const ProductID = Increment.dataset.id
                if (ProductID) {
-                    console.log("Increment ---> ", ProductID); 
+                    console.log("Increment ---> ", ProductID);
                     CART.update(ProductID, "increment") // Call cart update for increment
                }
           })
@@ -111,7 +122,11 @@ async function FetchCart() {
 
      // Display the total cost of all goods in the cart
      if (totalCost) {
-           totalCost.textContent = `$ ${Intl.NumberFormat().format(TotalCostOfGoods)}`
+          totalCost.textContent = `$ ${Intl.NumberFormat().format(TotalCostOfGoods)}`
+     }
+     // Display the cart counter immediately
+     if (cartCount) {
+          cartCount.textContent = `${CART.getSize()}`;
      }
 }
 

@@ -1,5 +1,10 @@
+import Auth from "./Utility/Authentication.js";
 import CartlocalStorage from "./Utility/cartClass.js";
 import IndexedDBX from "./Utility/database.js";
+import { pageTransition } from "./Utility/Utilities.js";
+// This will handle the transition effect
+pageTransition();
+const authentication = new Auth();
 // Select cart list HTML element
 const cartlist = document.querySelector("[data-cartlist]");
 // Initialize instances of cart and database classes
@@ -59,6 +64,7 @@ async function FetchCart() {
     const IncrementList = Array.from(document.querySelectorAll("[data-increase]"));
     const DecrementList = Array.from(document.querySelectorAll("[data-decrease]"));
     const totalCost = document.querySelector("[data-total-cost]");
+    const cartCount = document.querySelector("[data-Cart-count]");
     // Set up increment buttons to update cart quantities
     IncrementList.forEach(Increment => {
         Increment.addEventListener("click", (e) => {
@@ -81,6 +87,10 @@ async function FetchCart() {
     // Display the total cost of all goods in the cart
     if (totalCost) {
         totalCost.textContent = `$ ${Intl.NumberFormat().format(TotalCostOfGoods)}`;
+    }
+    // Display the cart counter immediately
+    if (cartCount) {
+        cartCount.textContent = `${CART.getSize()}`;
     }
 }
 // Test function to execute FetchCart and log results

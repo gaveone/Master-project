@@ -2,17 +2,38 @@
 
 // Simple website authentication using sessions
 
+import { pageTransition } from "./Utilities.js";
+
 class Auth {
-     public  user:string |null = null;
+     public user: string | null = sessionStorage.getItem("authentication");
 
      constructor() {
           // The constructor will check if we're logged in then redirect the user to the right location
+          const oldUrl = window.location.href;
+          console.log(oldUrl);
+          console.log("user ==>" ,sessionStorage.getItem("authentication"));
           
 
-          
+          if (!sessionStorage.getItem("authentication") && (oldUrl.includes("index.html") ||oldUrl.includes("cartPage.html"))) {
+
+               window.location.href = "login.html";
+
+
+          }
+          // Check if the user is in the login route and we have a user take them to the homepage
+          if ( oldUrl.includes("login") && sessionStorage.getItem("authentication") ) {
+               console.log("user is logged in take them to the homepage");
+                window.location.href = "index.html";
+
+
+
+          }
+
+
+
      }
 
-     public LoginAuth(email:string) {
+     public LoginAuth(email: string) {
 
           // Check if there's a user logged in
 
@@ -20,20 +41,20 @@ class Auth {
 
           if (!this.user) {
                sessionStorage.setItem("authentication", email);
-               setTimeout(function() {} , 1000) 
-               if (sessionStorage.getItem("authentication") === email){
-                    this.user =email;
+               setTimeout(function () { }, 1000)
+               if (sessionStorage.getItem("authentication") === email) {
+                    this.user = email;
                     console.log("auth ====", this.user);
                     window.location.href = "index.html";
                }
-          }else{
+          } else {
                // Redirect the user back to the homepage or the index page
                window.location.href = "index.html";
 
           }
-          
+
      }
-     public  LogoutAuth() {
+     public LogoutAuth() {
           // Remove the session then return the user back to the login page
           sessionStorage.clear();
           location.reload()

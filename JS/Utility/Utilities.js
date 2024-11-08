@@ -102,3 +102,17 @@ export async function dummyData(index) {
         });
     });
 }
+function sleep() {
+    return new Promise((resolve, reject) => {
+        setTimeout(resolve, 600);
+    });
+}
+// Page transition, animation
+export async function pageTransition() {
+    const body = document.querySelector("body");
+    if (body) {
+        body.classList.add("pageTransition");
+        await sleep();
+        body.classList.remove("pageTransition");
+    }
+}
