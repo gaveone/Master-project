@@ -1,12 +1,18 @@
 // Simple website authentication using sessions
 class Auth {
-    user = null;
+    user = sessionStorage.getItem("authentication");
     constructor() {
         // The constructor will check if we're logged in then redirect the user to the right location
         const oldUrl = window.location.href;
         console.log(oldUrl);
-        if (!sessionStorage.getItem("authentication")) {
+        console.log("user ==>", sessionStorage.getItem("authentication"));
+        if (!sessionStorage.getItem("authentication") && (oldUrl.includes("index.html") || oldUrl.includes("cartPage.html"))) {
             window.location.href = "login.html";
+        }
+        // Check if the user is in the login route and we have a user take them to the homepage
+        if (oldUrl.includes("login") && sessionStorage.getItem("authentication")) {
+            console.log("user is logged in take them to the homepage");
+            window.location.href = "index.html";
         }
     }
     LoginAuth(email) {
