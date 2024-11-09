@@ -34,11 +34,10 @@ export function IdGenerator() {
           "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
      ];
      //  Special characters
-     let Special = ["!", "*", "%", ]
      while (SegmentCount != 3) {
 
           for (let index = 0; index <= 7; index++) {
-               let SegmentType = rand(0, 3);
+               let SegmentType = rand(0, 2);
                switch (SegmentType) {
                     case 0: {
                          id += uppercaseAlphabet[rand(0, 25)];
@@ -49,10 +48,6 @@ export function IdGenerator() {
                          break;
                     }
                     case 2: {
-                         id += Special[rand(0, 2)];
-                         break;
-                    }
-                    case 3: {
                          id += rand(0, 9).toString();
                          break;
                     }
