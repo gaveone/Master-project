@@ -26,10 +26,36 @@ const authentication = new Auth();
 
 // Select cart list HTML element
 const cartlist: HTMLDivElement | null = document.querySelector("[data-cartlist]")
+const  inputs:HTMLInputElement[] =Array.from(document.querySelectorAll("[data-input]"))
+const  placeOrder:HTMLButtonElement |null =document.querySelector("[data-placeOrder]")
+
+var form = {
+     FullName:"",
+     Address:"",
+     PhoneNumber:""
+}
+
+inputs.forEach((input)=>{
+     input.addEventListener("input" ,(e)=>{
+          const mainInput = e.target as  HTMLInputElement;
+          console.log(mainInput.name ,mainInput.value);
+          form = {...form , [mainInput.name]:mainInput.value}
+     })
+
+})
+
+placeOrder?.addEventListener("click" , (e)=>{
+     console.dir(form);
+})
+
+
+
 
 // Initialize instances of cart and database classes
 const CART = new CartlocalStorage()
 const Database = new IndexedDBX()
+
+
 
 
 
