@@ -249,3 +249,19 @@ export async function pageTransition() {
      }
 
 }
+
+
+export function showToast(msg:string |null , sec:number) {
+     const toast = document.getElementById("toast");
+     const toastMsg = document.querySelector(".toast-message")
+     toast?.classList.add("show");
+     if (msg &&  toastMsg){
+          toastMsg.textContent = msg
+          
+     }
+     setTimeout(() => {
+          toast?.classList.remove("show");
+
+     }, (sec  *1000)); 
+     
+}

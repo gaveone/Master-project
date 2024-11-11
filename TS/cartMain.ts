@@ -1,7 +1,7 @@
 import Auth from "./Utility/Authentication.js";
 import CartlocalStorage from "./Utility/cartClass.js"
 import IndexedDBX from "./Utility/database.js"
-import { pageTransition } from "./Utility/Utilities.js";
+import { pageTransition, showToast } from "./Utility/Utilities.js";
 
 // Define the structure for a product type
 type product = {
@@ -46,6 +46,7 @@ inputs.forEach((input)=>{
 
 placeOrder?.addEventListener("click" , (e)=>{
      console.dir(form);
+     showToast("order successfully made" , 5)
 })
 
 
