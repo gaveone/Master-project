@@ -1,5 +1,5 @@
 import CartlocalStorage from "./Utility/cartClass.js";
-import { dummyData, IdGenerator, pageTransition, Timeformat } from "./Utility/Utilities.js";
+import { dummyData, IdGenerator, pageTransition, showToast } from "./Utility/Utilities.js";
 import FileConverter from "./Utility/File.js";
 import IndexedDBX from "./Utility/database.js";
 import Auth from "./Utility/Authentication.js";
@@ -7,13 +7,22 @@ import Auth from "./Utility/Authentication.js";
 // This will handle the transition effect
 pageTransition()
 
+const toast = document.getElementById("toast");
+toast?.addEventListener("click" ,()=>{})
+
+const but: HTMLButtonElement | null = document.querySelector(".ToastBut")
+
+
+
+
+
 
 
 console.log("test====");
 //  all in initialization of instances
 const cart = new CartlocalStorage();
 const database = new IndexedDBX();
-const  authentication =  new Auth();
+const authentication = new Auth();
 // const fileInit = new FileConverter();
 
 // All dom selections
@@ -73,6 +82,8 @@ async function gellData() {
 
           // Check if the product list container exists
           if (PorductList) {
+               // Show a successful Tost message
+               showToast("Successfully retrieved items" , 2.4)
                // Insert each product into the DOM
                items.forEach((item) => {
                     PorductList.insertAdjacentHTML("beforeend", Product({
@@ -101,17 +112,17 @@ async function gellData() {
                     });
                });
 
-               
-               
+
+
                // Refresh the page
-              
+
           }
      } catch (error) {
           console.error("Failed to retrieve items:", error);
      }
 
-    
-    
+
+
 }
 
 gellData();

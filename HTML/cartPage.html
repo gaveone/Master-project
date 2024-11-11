@@ -17,31 +17,37 @@
     />
   </head>
   <body>
+    <div class="toast" id="toast">
+      <span class="toast-message">This is a toast notification!</span>
+    </div>
     <main class="Container">
-        <header class="mainHeader">
-            <div class="subHeader">
-                 <div class="Navigation">
-                    <a href="index.html">
-                        <h1> <span>H</span>armony Hub</h1>
-                   </a>
+      <header class="mainHeader">
+        <div class="subHeader">
+          <div class="Navigation">
+            <a href="index.html">
+              <h1><span>H</span>armony Hub</h1>
+            </a>
+          </div>
 
-                 </div>
-
-                 <a class="cartBoxA" href="cartPage.html">
-                      <div class="cartBox">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                class="bi bi-cart" viewBox="0 0 16 16">
-                                <path
-                                     d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                           </svg>
-                           <h3 data-Cart-count></h3>
-                      </div>
-
-                 </a>
-
+          <a class="cartBoxA" href="cartPage.html">
+            <div class="cartBox">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="currentColor"
+                class="bi bi-cart"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"
+                />
+              </svg>
+              <h3 data-Cart-count></h3>
             </div>
-
-       </header>
+          </a>
+        </div>
+      </header>
 
       <div class="super_container">
         <dialog></dialog>
@@ -50,36 +56,7 @@
           <div class="left-grid">
             <div data-cartlist class="cartlist">
               <!-- Product 1 -->
-              <div class="product">
-                <!-- The image container -->
-                <a href="http://">
-                  <div class="cartImgBox">
-                    <img src="../sampleimg/p1.png" alt="" />
-                  </div>
-                </a>
-               
-                <!-- The description/ name and  rating -->
-                <div class="cartDetailsBox">
-                  <!-- name and rating -->
-                  <div class="cartDetailsBoxSub">
-                    <a href="" class="Cname"> guitar 3000</a>
-                    <a href="" class="Crating">2/5</a>
-                  </div>
-                  <a href="" class="Cprice">$400.5</a>
-                </div>
-
-                <!-- Quantity and mutations -->
-
-                <div class="quantityControlBox">
-                    <div class="mutationsBox">
-                        <button class="buttonD">+</button>
-                        <p>0</p>
-                        <button class="buttonD" > -</button>
-                    </div>
-
-
-                </div>
-              </div>
+             
             </div>
           </div>
 
@@ -89,22 +66,24 @@
 
             <div class="customer-info">
               <div class="customer-row">
-                <div class="label">
-                  Full Name
-                </div>
+                <div class="label">Full Name</div>
                 <div class="value">
-                  <input data-input type="text" name="FullName" id="">
+                  <input data-input type="text" name="FullName" id="" />
                 </div>
               </div>
               <hr />
               <div class="customer-row">
                 <div class="label">Address</div>
-                <div class="value"> <input data-input type="text" name="Address" id=""></div>
+                <div class="value">
+                  <input data-input type="text" name="Address" id="" />
+                </div>
               </div>
               <hr />
               <div class="customer-row">
                 <div class="label">Phone Number</div>
-                <div class="value"> <input data-input type="text" name="PhoneNumber" id=""></div>
+                <div class="value">
+                  <input data-input type="text" name="PhoneNumber" id="" />
+                </div>
               </div>
 
               <hr />
@@ -116,7 +95,7 @@
 
             <!-- Centered Place Order Button -->
             <div class="place-order">
-              <button data-placeOrder >Place Order</button>
+              <button data-placeOrder>Place Order</button>
             </div>
           </div>
         </div>

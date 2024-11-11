@@ -1,7 +1,7 @@
 import Auth from "./Utility/Authentication.js";
 import CartlocalStorage from "./Utility/cartClass.js";
 import IndexedDBX from "./Utility/database.js";
-import { pageTransition } from "./Utility/Utilities.js";
+import { pageTransition, showToast } from "./Utility/Utilities.js";
 // This will handle the transition effect
 pageTransition();
 const authentication = new Auth();
@@ -23,6 +23,7 @@ inputs.forEach((input) => {
 });
 placeOrder?.addEventListener("click", (e) => {
     console.dir(form);
+    showToast("order successfully made", 5);
 });
 // Initialize instances of cart and database classes
 const CART = new CartlocalStorage();
