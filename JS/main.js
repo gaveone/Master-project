@@ -7,7 +7,6 @@ pageTransition();
 const toast = document.getElementById("toast");
 toast?.addEventListener("click", () => { });
 const but = document.querySelector(".ToastBut");
-console.log("test====");
 //  all in initialization of instances
 const cart = new CartlocalStorage();
 const database = new IndexedDBX();
@@ -59,7 +58,7 @@ async function gellData() {
         // Check if the product list container exists
         if (PorductList) {
             // Show a successful Tost message
-            showToast("Successfully retrieved items", 2.4);
+            showToast("Successfully retrieved items", 2.4, false);
             // Insert each product into the DOM
             items.forEach((item) => {
                 PorductList.insertAdjacentHTML("beforeend", Product({

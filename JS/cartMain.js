@@ -4,7 +4,10 @@ import IndexedDBX from "./Utility/database.js";
 import { pageTransition, showToast } from "./Utility/Utilities.js";
 // This will handle the transition effect
 pageTransition();
+// Initialize instances of cart and database classes
 const authentication = new Auth();
+const CART = new CartlocalStorage();
+const Database = new IndexedDBX();
 // Select cart list HTML element
 const cartlist = document.querySelector("[data-cartlist]");
 const inputs = Array.from(document.querySelectorAll("[data-input]"));
@@ -17,17 +20,27 @@ var form = {
 inputs.forEach((input) => {
     input.addEventListener("input", (e) => {
         const mainInput = e.target;
-        console.log(mainInput.name, mainInput.value);
         form = { ...form, [mainInput.name]: mainInput.value };
     });
 });
 placeOrder?.addEventListener("click", (e) => {
-    console.dir(form);
-    showToast("order successfully made", 5);
+    console.log(form);
+    if (form.Address && form.FullName && form.PhoneNumber) {
+        if (CART.cartData.length > 0) {
+            showToast("order successfully made", 3, false);
+            CART.clear();
+            inputs.forEach((input) => {
+                input.value = '';
+            });
+        }
+        else {
+            showToast("you have no items in your card", 3, true);
+        }
+    }
+    else {
+        showToast("fail to make order please check inputs", 3, true);
+    }
 });
-// Initialize instances of cart and database classes
-const CART = new CartlocalStorage();
-const Database = new IndexedDBX();
 // Function to create a cart item card with provided details
 function cartCard(name, rating, Price, img, id, Quantity) {
     return `
@@ -57,7 +70,6 @@ function cartCard(name, rating, Price, img, id, Quantity) {
      </div>
      `;
 }
-console.log("yest"); // Debug log to confirm script execution
 // Function to fetch and display cart items
 async function FetchCart() {
     console.log("start FetchCart"); // Debug log to confirm function start

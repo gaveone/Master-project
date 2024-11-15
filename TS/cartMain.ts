@@ -22,43 +22,56 @@ interface FetchedCart extends product {
 // This will handle the transition effect
 pageTransition()
 
+
+// Initialize instances of cart and database classes
 const authentication = new Auth();
+const CART = new CartlocalStorage()
+const Database = new IndexedDBX()
 
 // Select cart list HTML element
 const cartlist: HTMLDivElement | null = document.querySelector("[data-cartlist]")
-const  inputs:HTMLInputElement[] =Array.from(document.querySelectorAll("[data-input]"))
-const  placeOrder:HTMLButtonElement |null =document.querySelector("[data-placeOrder]")
+const inputs: HTMLInputElement[] = Array.from(document.querySelectorAll("[data-input]"))
+const placeOrder: HTMLButtonElement | null = document.querySelector("[data-placeOrder]")
 
 var form = {
-     FullName:"",
-     Address:"",
-     PhoneNumber:""
+     FullName: "",
+     Address: "",
+     PhoneNumber: ""
 }
 
-inputs.forEach((input)=>{
-     input.addEventListener("input" ,(e)=>{
-          const mainInput = e.target as  HTMLInputElement;
-          console.log(mainInput.name ,mainInput.value);
-          form = {...form , [mainInput.name]:mainInput.value}
+inputs.forEach((input) => {
+     input.addEventListener("input", (e) => {
+          const mainInput = e.target as HTMLInputElement;
+          form = { ...form, [mainInput.name]: mainInput.value }
      })
 
 })
 
-placeOrder?.addEventListener("click" , (e)=>{
-     console.dir(form);
-     showToast("order successfully made" , 5)
+placeOrder?.addEventListener("click", (e) => {
+
+     console.log(form);
+     if (form.Address && form.FullName && form.PhoneNumber) {
+          if (CART.cartData.length > 0) {
+               showToast("order successfully made", 3, false)
+               CART.clear()
+               inputs.forEach((input) => {
+                    input.value = '';
+               })
+          }else{
+               showToast("you have no items in your card", 3, true);
+          }
+
+
+     } else {
+          showToast("fail to make order please check inputs", 3, true)
+
+     }
+
+
+
+
+
 })
-
-
-
-
-// Initialize instances of cart and database classes
-const CART = new CartlocalStorage()
-const Database = new IndexedDBX()
-
-
-
-
 
 
 // Function to create a cart item card with provided details
@@ -91,7 +104,6 @@ function cartCard(name: string, rating: number, Price: number, img: string, id: 
      `
 }
 
-console.log("yest"); // Debug log to confirm script execution
 
 // Function to fetch and display cart items
 async function FetchCart() {

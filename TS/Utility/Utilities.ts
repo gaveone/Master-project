@@ -251,17 +251,19 @@ export async function pageTransition() {
 }
 
 
-export function showToast(msg:string |null , sec:number) {
+export function showToast(msg:string |null , sec:number ,Error:boolean) {
      const toast = document.getElementById("toast");
      const toastMsg = document.querySelector(".toast-message")
      toast?.classList.add("show");
+     toast?.classList.add(Error ? "toastError" : "toastDefault");
      if (msg &&  toastMsg){
           toastMsg.textContent = msg
           
      }
      setTimeout(() => {
           toast?.classList.remove("show");
+          toast?.classList.remove(Error ? "toastError" : "toastDefault");
 
-     }, (sec  *1000)); 
+     }, ( sec * 1000 )); 
      
 }

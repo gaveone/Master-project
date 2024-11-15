@@ -8,7 +8,11 @@
   --secondary-60: rgba(77, 91, 72, 0.6);
   --accent: rgb(121, 150, 123);
 
-  /* card  Colours  Would be an array in JavaScript*/
+  /* Error theme variables */
+  --error: rgb(191, 61, 55);
+  --error-60: rgba(191, 61, 55, 0.6);
+  --error-accent: rgb(234, 95, 85);
+  --error-text: rgb(255, 244, 244);
 }
 
 /* This is a Google font  */
@@ -129,9 +133,6 @@ body {
   top: 20px;
   right: 5px;
   border-radius: 5px;
-  color: var(--background);
-  border: 1.5px solid var(--accent);
-  background-color: var(--text);
   padding: 15px 25px;
   display: flex;
   align-items: center;
@@ -143,6 +144,20 @@ body {
   transition: opacity 0.3s ease-in-out, transform 0.5s ease;
 }
 
+.toastDefault{
+  color: var(--background);
+  border: 1.5px solid var(--accent);
+  background-color: var(--text);
+  box-shadow: 0 0 10px var(--text);
+}
+
+.toastError {
+  color: var(--error-text);
+  border: 1.5px solid var(--error-accent);
+  background-color: var(--error);
+  box-shadow: 0 0 10px var(--error-60);
+}
+
 .toast.show {
   opacity: 1;
   transform: translateX(-10px);
@@ -152,6 +167,9 @@ body {
 .toast-message {
   flex: 1;
 }
+
+
+
 
 /* Media queries */
 

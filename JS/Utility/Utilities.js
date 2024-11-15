@@ -198,14 +198,16 @@ export async function pageTransition() {
         body.classList.remove("pageTransition");
     }
 }
-export function showToast(msg, sec) {
+export function showToast(msg, sec, Error) {
     const toast = document.getElementById("toast");
     const toastMsg = document.querySelector(".toast-message");
     toast?.classList.add("show");
+    toast?.classList.add(Error ? "toastError" : "toastDefault");
     if (msg && toastMsg) {
         toastMsg.textContent = msg;
     }
     setTimeout(() => {
         toast?.classList.remove("show");
+        toast?.classList.remove(Error ? "toastError" : "toastDefault");
     }, (sec * 1000));
 }
