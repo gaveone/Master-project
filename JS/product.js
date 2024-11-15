@@ -1,10 +1,14 @@
+import Auth from "./Utility/Authentication.js";
 import IndexedDBX from "./Utility/database.js";
+import { pageTransition } from "./Utility/Utilities.js";
 const database = new IndexedDBX();
 const urlParams = new URLSearchParams(window.location.search);
+const authentication = new Auth();
 const Video = document.querySelector("[data-video]");
 const Name = document.querySelector("[data-name]");
 const Description = document.querySelector("[data-description]");
-console.log("test in the product GS");
+// This will handle the transition effect
+pageTransition();
 async function loadData() {
     const id = urlParams.get("id");
     console.log(id);

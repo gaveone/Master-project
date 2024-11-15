@@ -14,14 +14,12 @@ const loggedIN: HTMLInputElement | null = document.querySelector("[data-loggedIN
 const dataErrorMessage: HTMLParagraphElement | null = document.querySelector("[data-errorMessage]")
 
 function Validate(email: string) {
+     // https://support.boldsign.com/kb/article/15962/how-to-create-regular-expressions-regex-for-email-address-validation
 
-     if (email.includes("@")) {
-          console.log("email includes @");
-          
-          if (email.includes("com") || email.includes("org")) {
-               console.log("email includes "+".com", ".org");
+     const emailRegex  =  /^[a-zA-Z0-9_]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+     if (emailRegex.test(email)) {
                return true;
-          }
      }
      return false;
 }
@@ -38,7 +36,6 @@ loggedBtu?.addEventListener("click", () => {
 
                const Condition = Validate(inputValue);
                if (Condition) {
-                    console.log("all conditions met");
                     loggedIN.style.border = " 1px solid var(--accent)"
                     authentication.LoginAuth(inputValue);
                     if (dataErrorMessage){
@@ -46,7 +43,6 @@ loggedBtu?.addEventListener("click", () => {
                     }
 
                }else{
-                    console.log("something went wrong");
                     if (dataErrorMessage){
                          dataErrorMessage.innerHTML = "INVALID EMAIL";
                     }
