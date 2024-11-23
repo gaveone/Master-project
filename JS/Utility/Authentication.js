@@ -7,7 +7,7 @@ class Auth {
         console.log(oldUrl);
         console.log("user ==>", sessionStorage.getItem("authentication"));
         if (!sessionStorage.getItem("authentication") && (oldUrl.includes("index.html") || oldUrl.includes("cartPage.html"))) {
-            window.location.href = "/login.html";
+            window.location.href = "../HTML/login.html";
         }
         // Check if the user is in the login route and we have a user take them to the homepage
         if (oldUrl.includes("login") && sessionStorage.getItem("authentication")) {
