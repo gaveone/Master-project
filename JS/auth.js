@@ -8,6 +8,7 @@ const loggedIN = document.querySelector("[data-loggedIN]");
 const dataErrorMessage = document.querySelector("[data-errorMessage]");
 function Validate(email) {
     // https://support.boldsign.com/kb/article/15962/how-to-create-regular-expressions-regex-for-email-address-validation
+    
     const emailRegex = /^[a-zA-Z0-9_]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (emailRegex.test(email)) {
         return true;
