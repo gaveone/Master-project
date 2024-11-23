@@ -16,7 +16,7 @@ class Auth {
 
           if (!sessionStorage.getItem("authentication") && (oldUrl.includes("index.html") ||oldUrl.includes("cartPage.html"))) {
 
-               window.location.href = "/login.html";
+               window.location.href = "../HTML/login.html";
 
 
           }
