@@ -6,7 +6,7 @@ import { pageTransition } from "./Utilities.js";
 
 const routes = {
      login: "./HTML/login.html",
-     index: "./index.html",
+     index: "/",
 };
 class Auth {
      public user: string | null = sessionStorage.getItem("authentication");

@@ -1,7 +1,7 @@
 // Simple website authentication using sessions
 const routes = {
     login: "./HTML/login.html",
-    index: "./index.html",
+    index: "/",
 };
 class Auth {
     user = sessionStorage.getItem("authentication");
