@@ -20,7 +20,7 @@ const CartAddBtu = document.querySelector("[data-Add-ToCart]");
 function Product({ id, Price, Header, img }) {
     return `
      <div data-Item-Container class="itemContainer">
-                         <a href="Product.html?id=${id}"   >
+                         <a href="./HTML/Product.html?id=${id}"   >
                               <div class="itemImage">
                                    <img data-Item-Image src="${img}" alt="">
 
