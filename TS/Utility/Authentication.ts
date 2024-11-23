@@ -5,8 +5,8 @@
 import { pageTransition } from "./Utilities.js";
 
 const routes = {
-     login: "./HTML/login.html",
-     index: "index.html",
+     login: "/Master-project/HTML/login.html",
+     index: "/Master-project/index.html",
 };
 class Auth {
      public user: string | null = sessionStorage.getItem("authentication");
