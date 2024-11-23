@@ -1,4 +1,8 @@
 // Simple website authentication using sessions
+const routes = {
+    login: "./HTML/login.html",
+    index: "./index.html",
+};
 class Auth {
     user = sessionStorage.getItem("authentication");
     constructor() {
@@ -38,8 +42,4 @@ class Auth {
         location.reload();
     }
 }
-const routes = {
-    login: `${window.location.origin}/HTML/login.html`,
-    index: `${window.location.origin}/index.html`,
-};
 export default Auth;

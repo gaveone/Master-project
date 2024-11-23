@@ -4,6 +4,10 @@
 
 import { pageTransition } from "./Utilities.js";
 
+const routes = {
+     login: "./HTML/login.html",
+     index: "./index.html",
+};
 class Auth {
      public user: string | null = sessionStorage.getItem("authentication");
 
@@ -11,21 +15,19 @@ class Auth {
           // The constructor will check if we're logged in then redirect the user to the right location
           const oldUrl = window.location.href;
           console.log(oldUrl);
-          console.log("user ==>" ,sessionStorage.getItem("authentication"));
-          
+          console.log("user ==>", sessionStorage.getItem("authentication"));
 
-          if (!sessionStorage.getItem("authentication") && (oldUrl.includes("index.html") ||oldUrl.includes("cartPage.html"))) {
+
+          if (!sessionStorage.getItem("authentication") && (oldUrl.includes("index.html") || oldUrl.includes("cartPage.html"))) {
 
                window.location.href = routes.login;
 
 
           }
           // Check if the user is in the login route and we have a user take them to the homepage
-          if ( oldUrl.includes("login") && sessionStorage.getItem("authentication") ) {
+          if (oldUrl.includes("login") && sessionStorage.getItem("authentication")) {
                console.log("user is logged in take them to the homepage");
-                window.location.href = routes.index;
-
-
+               window.location.href = routes.index;
 
           }
 
@@ -61,10 +63,7 @@ class Auth {
      }
 }
 
-const routes = {
-     login: `${window.location.origin}/HTML/login.html`,
-     index: `${window.location.origin}/index.html`,
- };
- 
+
+
 
 export default Auth;
