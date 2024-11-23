@@ -16,14 +16,14 @@ class Auth {
 
           if (!sessionStorage.getItem("authentication") && (oldUrl.includes("index.html") ||oldUrl.includes("cartPage.html"))) {
 
-               window.location.href = "../HTML/login.html";
+               window.location.href = routes.login;
 
 
           }
           // Check if the user is in the login route and we have a user take them to the homepage
           if ( oldUrl.includes("login") && sessionStorage.getItem("authentication") ) {
                console.log("user is logged in take them to the homepage");
-                window.location.href = "/index.html";
+                window.location.href = routes.index;
 
 
 
@@ -45,11 +45,11 @@ class Auth {
                if (sessionStorage.getItem("authentication") === email) {
                     this.user = email;
                     console.log("auth ====", this.user);
-                    window.location.href = "/index.html";
+                    window.location.href = routes.index;
                }
           } else {
                // Redirect the user back to the homepage or the index page
-               window.location.href = "/index.html";
+               window.location.href = routes.index;
 
           }
 
@@ -61,6 +61,10 @@ class Auth {
      }
 }
 
-
+const routes = {
+     login: `${window.location.origin}/HTML/login.html`,
+     index: `${window.location.origin}/index.html`,
+ };
+ 
 
 export default Auth;
