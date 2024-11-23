@@ -32,6 +32,7 @@ placeOrder?.addEventListener("click", (e) => {
             inputs.forEach((input) => {
                 input.value = '';
             });
+            window.location.reload();
         }
         else {
             showToast("you have no items in your card", 3, true);
