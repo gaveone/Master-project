@@ -28,7 +28,7 @@ const CartAddBtu: HTMLButtonElement | null = document.querySelector("[data-Add-T
 function Product({ id, Price, Header, img }: { id: string, Price: number, Header: string, img: string }) {
      return `
      <div data-Item-Container class="itemContainer">
-                         <a href="../HTML/Product.html?id=${id}"   >
+                         <a href="./HTML/Product.html?id=${id}"   >
                               <div class="itemImage">
                                    <img data-Item-Image src="${img}" alt="">
 
@@ -36,12 +36,12 @@ function Product({ id, Price, Header, img }: { id: string, Price: number, Header
                          </a>
 
                          <div class="itemContent">
-                              <a href="Product.html?id=${id}" >
+                              <a href="./HTML/Product.html?id=${id}" >
                                    <p data-Item-Header class="itemTitle">${Header}</p>
                               </a>
 
                               <div class="itemDetails">
-                                   <a  href="Product.html?id=${id}" >
+                                   <a  href="./HTML/Product.html?id=${id}" >
                                          <p class="itemPrice"  data-Item-Price>$${Price}</p>
                                    </a>
                                   
